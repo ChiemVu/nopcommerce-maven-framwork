@@ -47,6 +47,15 @@ public class RegisterPageObject extends BasePage {
         return getElementText(driver, RegisterPageUI.CONFRIM_PASSWORD_ERROR_MESSAGE);
     }
 
+    public String getRegisterSuccessMesage() {
+        waitForElementVisible(driver, RegisterPageUI.REGISTER_SUCCESS_MESSAGE);
+        return getElementText(driver, RegisterPageUI.REGISTER_SUCCESS_MESSAGE);
+    }
+
+    public String getExistingEmailErrorMessage() {
+        waitForElementVisible(driver, RegisterPageUI.EXISTING_EMAIL_MESSAGE);
+        return getElementText(driver, RegisterPageUI.EXISTING_EMAIL_MESSAGE);
+    }
 
     public void clickToGenderRadioBuntton(String gender) {
         waitForElementClickable(driver, RegisterPageUI.GENDER_RADIO_BUTTON);
@@ -87,4 +96,6 @@ public class RegisterPageObject extends BasePage {
         waitForElementVisible(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX);
         sendKeyToElement(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX, password);
     }
+
+
 }
