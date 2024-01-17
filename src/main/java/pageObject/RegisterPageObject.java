@@ -1,6 +1,7 @@
 package pageObject;
 
 import commons.BasePage;
+import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 import pageUIs.RegisterPageUI;
 
@@ -8,8 +9,12 @@ public class RegisterPageObject extends BasePage {
     private WebDriver driver;
 
     public RegisterPageObject(WebDriver driver) {
-        super(driver);
         this.driver = driver;
+    }
+
+    public RegisterPageObject openRegisterPageUrl(String registerPageUrl) {
+        openPageUrl(driver, registerPageUrl);
+        return PageGeneratorManager.getRegisterPage(driver);
     }
 
     public void clickToLoginButton() {
@@ -40,5 +45,46 @@ public class RegisterPageObject extends BasePage {
     public String getConfirmPasswordErrorMessage() {
         waitForElementVisible(driver, RegisterPageUI.CONFRIM_PASSWORD_ERROR_MESSAGE);
         return getElementText(driver, RegisterPageUI.CONFRIM_PASSWORD_ERROR_MESSAGE);
+    }
+
+
+    public void clickToGenderRadioBuntton(String gender) {
+        waitForElementClickable(driver, RegisterPageUI.GENDER_RADIO_BUTTON);
+        checkToDefaultCheckboxOrRadio(driver, RegisterPageUI.GENDER_RADIO_BUTTON);
+    }
+
+    public void inputToFirstNameTextbox(String firstName) {
+        waitForElementVisible(driver, RegisterPageUI.FIRSTNAME_TEXTBOX);
+        sendKeyToElement(driver, RegisterPageUI.FIRSTNAME_TEXTBOX, firstName);
+    }
+
+    public void inputToLastNameTextbox(String lastName) {
+        waitForElementVisible(driver, RegisterPageUI.LASTNAME_TEXTBOX);
+        sendKeyToElement(driver, RegisterPageUI.LASTNAME_TEXTBOX, lastName);
+    }
+
+    public void selectToDropdownByName(WebDriver driver, String dropdownAttributeName, String dropdownValue) {
+        waitForElementClickable(driver, RegisterPageUI.DYNAMIC_DROPDOWN_BY_NAME, dropdownAttributeName);
+        selectItemInDefaultDropdown(driver, RegisterPageUI.DYNAMIC_DROPDOWN_BY_NAME, dropdownValue, dropdownAttributeName);
+    }
+
+    public void inputEmailTextbox(String email) {
+        waitForElementVisible(driver, RegisterPageUI.EMAIL_TEXTBOX);
+        sendKeyToElement(driver, RegisterPageUI.EMAIL_TEXTBOX, email);
+    }
+
+    public void clickToNewsletterCheckbox() {
+        waitForElementClickable(driver, RegisterPageUI.NEWSLETTER_CHECKBOX);
+        checkToDefaultCheckboxOrRadio(driver, RegisterPageUI.NEWSLETTER_CHECKBOX);
+    }
+
+    public void inputPasswordTextbox(String password) {
+        waitForElementVisible(driver, RegisterPageUI.PASSWORD_TEXTBOX);
+        sendKeyToElement(driver, RegisterPageUI.PASSWORD_TEXTBOX, password);
+    }
+
+    public void inputConfirmPasswordTextbox(String password) {
+        waitForElementVisible(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX);
+        sendKeyToElement(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX, password);
     }
 }

@@ -9,7 +9,6 @@ public class HomePageObject extends BasePage {
     private WebDriver driver;
 
     public HomePageObject(WebDriver driver) {
-        super(driver);
         this.driver = driver;
     }
 

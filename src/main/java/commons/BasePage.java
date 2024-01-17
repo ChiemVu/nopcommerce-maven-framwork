@@ -5,18 +5,28 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
 
 public class BasePage {
-    private WebDriver driver;
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
+    // Ko cần phải khởi tạo đối tượng mà vẫn truy cập vào hàm này được
+    // Truy cập trực tiếp từ phạm vi Class
+    public static BasePage getBasePage() {
+        return new BasePage();
     }
 
+
+    public void openPageUrl(WebDriver driver, String pageurl) {
+        driver.get(pageurl);
+    }
+
+    public String getCurrentPageUrl(WebDriver driver) {
+        return driver.getCurrentUrl();
+    }
 
     private By getByLocator(String locatorType) {
         By by = null;
@@ -85,32 +95,17 @@ public class BasePage {
         }
     }
 
-    public void waitForElementInvisible(WebDriver driver, String locatorType) {
-        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIME));
-        explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locatorType)));
-    }
-
-    public void waitForElementUndisplayed(WebDriver driver, String locatorType) {
-        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIME));
-        explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locatorType)));
-    }
-
-    public void waitForAllElementInvisible(WebDriver driver, String locatorType) {
-        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIME));
-        overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIME);
-        explicitWait.until(ExpectedConditions.invisibilityOfAllElements(getListWebElement(driver, locatorType)));
-        overrideImplicitTimeout(driver, GlobalConstants.LONG_TIME);
-    }
-
-    public void overrideImplicitTimeout(WebDriver driver, long timeOut) {
-        //driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.SHORT_TIME)); //selenium 4
-    }
-
     public void waitForElementClickable(WebDriver driver, String locatorType) {
 
         WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIME));
         explicitWait.until(ExpectedConditions.elementToBeClickable(getByLocator(locatorType)));
+    }
+
+    public void waitForElementClickable(WebDriver driver, String locatorType, String... dynamicValues) {
+
+        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIME));
+        explicitWait.until(
+                ExpectedConditions.elementToBeClickable(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
     }
 
     public void waitForElementVisible(WebDriver driver, String locatorType) {
@@ -118,5 +113,21 @@ public class BasePage {
         explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locatorType)));
     }
 
+    public void checkToDefaultCheckboxOrRadio(WebDriver driver, String locatorType) {
+        WebElement element = getWebElement(driver, locatorType);
+        if (!element.isSelected()) {
+            element.click();
+        }
+    }
 
+    public void selectItemInDefaultDropdown(WebDriver driver, String locatorType, String textItem, String... dynamicValue) {
+        Select select = new Select(getWebElement(driver, getDynamicXpath(locatorType, dynamicValue)));
+        select.selectByVisibleText(textItem);
+    }
+
+    public void sendKeyToElement(WebDriver driver, String locatorType, String textValue) {
+        WebElement element = getWebElement(driver, locatorType);
+        element.clear();
+        element.sendKeys(textValue);
+    }
 }
