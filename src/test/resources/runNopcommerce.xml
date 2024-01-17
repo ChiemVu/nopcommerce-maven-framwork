@@ -11,7 +11,7 @@
         <parameter name="browser" value="chrome"/>
 
         <classes>
-            <class name="com.nopcommerce.Nopcommerce_001_Register"/>
+            <class name="com.nopcommerce.Nopcommerce_002_Login"/>
         </classes>
     </test>
 

@@ -39,7 +39,7 @@ public class Nopcommerce_001_Register extends BaseTest {
         invalidPassword = "123";
     }
 
-    //@Test
+    @Test
     public void Register_01_Empty_Data(Method method) {
         ExtentTestManager.startTest(method.getName(), "Register_01_Empty_Data"); //start TC
 
@@ -62,7 +62,7 @@ public class Nopcommerce_001_Register extends BaseTest {
         Assert.assertEquals(registerPage.getConfirmPasswordErrorMessage(), "Password is required.");
     }
 
-    //@Test
+    @Test
     public void Register_02_Invalid_Email(Method method) {
         ExtentTestManager.startTest(method.getName(), "Register_02_Invalid_Email"); //start TC
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 01: Open to 'Register' page"); //add log
@@ -106,7 +106,7 @@ public class Nopcommerce_001_Register extends BaseTest {
 
     }
 
-    //@Test
+    @Test
     public void Register_03_Password_Less_Than_6_Chars(Method method) {
         ExtentTestManager.startTest(method.getName(), "Register_03_Password_Less_Than_6_Chars"); //start TC
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 01: Open to 'Register' page"); //add log
@@ -149,7 +149,7 @@ public class Nopcommerce_001_Register extends BaseTest {
         Assert.assertEquals(registerPage.getPasswordErrorMessage(), "Password must meet the following rules:\nmust have at least 6 characters");
     }
 
-    //@Test
+    @Test
     public void Register_04_Invalid_Confirm_Password(Method method) {
         ExtentTestManager.startTest(method.getName(), "Register_04_Invalid_Confirm_Password"); //start TC
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 01: Open to 'Register' page"); //add log

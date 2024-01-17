@@ -1,15 +1,13 @@
 package commons;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+
 
 public class BasePage {
 
@@ -129,5 +127,17 @@ public class BasePage {
         WebElement element = getWebElement(driver, locatorType);
         element.clear();
         element.sendKeys(textValue);
+    }
+
+    public boolean isElementDisplayed(WebDriver driver, String locatorType) {
+        try {
+            // tìm thấy element:
+            // case 1: Displayed - trả vè true
+            // case 2: undisplayed - trả về false
+            return getWebElement(driver, locatorType).isDisplayed();
+        } catch (NoSuchElementException e) {
+            // case 3: undisplayed - trả về false
+            return false;
+        }
     }
 }

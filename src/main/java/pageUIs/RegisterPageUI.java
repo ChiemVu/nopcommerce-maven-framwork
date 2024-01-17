@@ -19,4 +19,6 @@ public class RegisterPageUI {
     public static final String CONFRIM_PASSWORD_ERROR_MESSAGE = "xpath=//span[@id='ConfirmPassword-error']";
     public static final String REGISTER_SUCCESS_MESSAGE = "xpath=//div[@class='result']";
     public static final String EXISTING_EMAIL_MESSAGE = "xpath=//div[contains(@class,'message-error')]//li";
+
+    public static final String LOGIN_LINK = "xpath=//a[@class='ico-login']";
 }
