@@ -1,6 +1,7 @@
 package com.nopcommerce;
 
 import com.aventstack.extentreports.Status;
+import com.nopcommerce.data.UserData;
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +18,7 @@ import java.lang.reflect.Method;
 
 public class Nopcommerce_001_Register extends BaseTest {
     private WebDriver driver;
-    private String firstName, lastName, password, invalidPassword, emailAddress, gender, day, month, year;
+    private String emailAddress;
     String registerPageUrl;
 
     @Parameters({"browser", "url"})
@@ -28,15 +29,7 @@ public class Nopcommerce_001_Register extends BaseTest {
         registerPage = homePage.openRegisterPage();
         registerPageUrl = registerPage.getCurrentPageUrl(driver);
 
-        gender = "Male";
-        firstName = "Vu";
-        lastName = "Chiem";
-        day = "10";
-        month = "June";
-        year = "1989";
         emailAddress = "vtc" + generateFakeNumber() + "@gmail.com";
-        password = "123456";
-        invalidPassword = "123";
     }
 
     @Test
@@ -44,7 +37,7 @@ public class Nopcommerce_001_Register extends BaseTest {
         ExtentTestManager.startTest(method.getName(), "Register_01_Empty_Data"); //start TC
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 01: Click to 'Login' button");
-        registerPage.clickToLoginButton();
+        registerPage.clickToRegisterButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 02: Verify FirstName error message deplayed");
         Assert.assertEquals(registerPage.getFirstNameErrorMessage(), "First name is required.");
@@ -68,38 +61,38 @@ public class Nopcommerce_001_Register extends BaseTest {
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 01: Open to 'Register' page"); //add log
         registerPage = registerPage.openRegisterPageUrl(registerPageUrl);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 2: Select Gender radio button with value is" + gender);
-        registerPage.clickToGenderRadioBuntton(gender);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 2: Select Gender radio button with value is" + UserData.Register.GENDER);
+        registerPage.clickToGenderRadioBuntton(UserData.Register.GENDER);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 3: Input Firstname with value is" + firstName);
-        registerPage.inputToFirstNameTextbox(firstName);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 3: Input Firstname with value is" + UserData.Register.FIRSTNAME);
+        registerPage.inputToFirstNameTextbox(UserData.Register.FIRSTNAME);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 4: Input Lastname with value is" + lastName);
-        registerPage.inputToLastNameTextbox(lastName);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 4: Input Lastname with value is" + UserData.Register.LASTNAME);
+        registerPage.inputToLastNameTextbox(UserData.Register.LASTNAME);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 5: Select to Date of Birth Day dropdown with value is" + day);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthDay", day);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 5: Select to Date of Birth Day dropdown with value is" + UserData.Register.DAY);
+        registerPage.selectToDropdownByName("DateOfBirthDay", UserData.Register.DAY);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 6: Select to Date of Birth Month dropdown with value is" + month);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthMonth", month);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 6: Select to Date of Birth Month dropdown with value is" + UserData.Register.MONTH);
+        registerPage.selectToDropdownByName("DateOfBirthMonth", UserData.Register.MONTH);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 7: Select to Date of Birth Year dropdown with value is" + year);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthYear", year);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 7: Select to Date of Birth Year dropdown with value is" + UserData.Register.YEAR);
+        registerPage.selectToDropdownByName("DateOfBirthYear", UserData.Register.YEAR);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 8: Input invalid email");
-        registerPage.inputEmailTextbox("#143@gmail@");
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 8: Input invalid email with value is" + UserData.Register.REGISTER_INVALID_EMAIL);
+        registerPage.inputEmailTextbox(UserData.Register.REGISTER_INVALID_EMAIL);
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 9: Click To Newsletter checkbox");
         registerPage.clickToNewsletterCheckbox();
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 10: Input Password with value is" + password);
-        registerPage.inputPasswordTextbox(password);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 10: Input Password with value is" + UserData.Register.PASSWORD);
+        registerPage.inputPasswordTextbox(UserData.Register.PASSWORD);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 11: Input Confirm Password with value is" + password);
-        registerPage.inputConfirmPasswordTextbox(password);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 11: Input Confirm Password with value is" + UserData.Register.PASSWORD);
+        registerPage.inputConfirmPasswordTextbox(UserData.Register.PASSWORD);
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 12: Click to 'Login' button");
-        registerPage.clickToLoginButton();
+        registerPage.clickToRegisterButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 13: Verify Email error message deplayed");
         Assert.assertEquals(registerPage.getEmailErrorMessage(), "Wrong email");
@@ -112,23 +105,23 @@ public class Nopcommerce_001_Register extends BaseTest {
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 01: Open to 'Register' page"); //add log
         registerPage = registerPage.openRegisterPageUrl(registerPageUrl);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 2: Select Gender radio button with value is" + gender);
-        registerPage.clickToGenderRadioBuntton(gender);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 2: Select Gender radio button with value is" + UserData.Register.GENDER);
+        registerPage.clickToGenderRadioBuntton(UserData.Register.GENDER);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 3: Input Firstname with value is" + firstName);
-        registerPage.inputToFirstNameTextbox(firstName);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 3: Input Firstname with value is" + UserData.Register.FIRSTNAME);
+        registerPage.inputToFirstNameTextbox(UserData.Register.FIRSTNAME);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 4: Input Lastname with value is" + lastName);
-        registerPage.inputToLastNameTextbox(lastName);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 4: Input Lastname with value is" + UserData.Register.LASTNAME);
+        registerPage.inputToLastNameTextbox(UserData.Register.LASTNAME);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 5: Select to Date of Birth Day dropdown with value is" + day);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthDay", day);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 5: Select to Date of Birth Day dropdown with value is" + UserData.Register.DAY);
+        registerPage.selectToDropdownByName("DateOfBirthDay", UserData.Register.DAY);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 6: Select to Date of Birth Month dropdown with value is" + month);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthMonth", month);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 6: Select to Date of Birth Month dropdown with value is" + UserData.Register.MONTH);
+        registerPage.selectToDropdownByName("DateOfBirthMonth", UserData.Register.MONTH);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 7: Select to Date of Birth Year dropdown with value is" + year);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthYear", year);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 7: Select to Date of Birth Year dropdown with value is" + UserData.Register.YEAR);
+        registerPage.selectToDropdownByName("DateOfBirthYear", UserData.Register.YEAR);
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 8: Input invalid email" + emailAddress);
         registerPage.inputEmailTextbox(emailAddress);
@@ -136,14 +129,14 @@ public class Nopcommerce_001_Register extends BaseTest {
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 9: Click To Newsletter checkbox");
         registerPage.clickToNewsletterCheckbox();
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 10: Input Invalid Password with value is" + invalidPassword);
-        registerPage.inputPasswordTextbox(invalidPassword);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 10: Input Invalid Password with value is 123");
+        registerPage.inputPasswordTextbox("123");
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 11: Input Confirm Password with value is" + invalidPassword);
-        registerPage.inputConfirmPasswordTextbox(invalidPassword);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 11: Input Confirm Password with value is 123");
+        registerPage.inputConfirmPasswordTextbox("123");
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 12: Click to 'Login' button");
-        registerPage.clickToLoginButton();
+        registerPage.clickToRegisterButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 13: Verify password error message deplayed");
         Assert.assertEquals(registerPage.getPasswordErrorMessage(), "Password must meet the following rules:\nmust have at least 6 characters");
@@ -155,23 +148,23 @@ public class Nopcommerce_001_Register extends BaseTest {
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 01: Open to 'Register' page"); //add log
         registerPage = registerPage.openRegisterPageUrl(registerPageUrl);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 2: Select Gender radio button with value is" + gender);
-        registerPage.clickToGenderRadioBuntton(gender);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 2: Select Gender radio button with value is" + UserData.Register.GENDER);
+        registerPage.clickToGenderRadioBuntton(UserData.Register.GENDER);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 3: Input Firstname with value is" + firstName);
-        registerPage.inputToFirstNameTextbox(firstName);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 3: Input Firstname with value is" + UserData.Register.FIRSTNAME);
+        registerPage.inputToFirstNameTextbox(UserData.Register.FIRSTNAME);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 4: Input Lastname with value is" + lastName);
-        registerPage.inputToLastNameTextbox(lastName);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 4: Input Lastname with value is" + UserData.Register.LASTNAME);
+        registerPage.inputToLastNameTextbox(UserData.Register.LASTNAME);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 5: Select to Date of Birth Day dropdown with value is" + day);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthDay", day);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 5: Select to Date of Birth Day dropdown with value is" + UserData.Register.DAY);
+        registerPage.selectToDropdownByName("DateOfBirthDay", UserData.Register.DAY);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 6: Select to Date of Birth Month dropdown with value is" + month);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthMonth", month);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 6: Select to Date of Birth Month dropdown with value is" + UserData.Register.MONTH);
+        registerPage.selectToDropdownByName("DateOfBirthMonth", UserData.Register.MONTH);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 7: Select to Date of Birth Year dropdown with value is" + year);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthYear", year);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 7: Select to Date of Birth Year dropdown with value is" + UserData.Register.YEAR);
+        registerPage.selectToDropdownByName("DateOfBirthYear", UserData.Register.YEAR);
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 8: Input invalid email" + emailAddress);
         registerPage.inputEmailTextbox(emailAddress);
@@ -179,14 +172,14 @@ public class Nopcommerce_001_Register extends BaseTest {
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 9: Click To Newsletter checkbox");
         registerPage.clickToNewsletterCheckbox();
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 10: Input Password with value is" + password);
-        registerPage.inputPasswordTextbox(password);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 10: Input Password with value is" + UserData.Register.PASSWORD);
+        registerPage.inputPasswordTextbox(UserData.Register.PASSWORD);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 11: Input Confirm Password with value is" + invalidPassword);
-        registerPage.inputConfirmPasswordTextbox(invalidPassword);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 11: Input Confirm Password with value is" + UserData.Register.REGISTER_INVALID_PASSWORD);
+        registerPage.inputConfirmPasswordTextbox(UserData.Register.REGISTER_INVALID_PASSWORD);
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 12: Click to 'Login' button");
-        registerPage.clickToLoginButton();
+        registerPage.clickToRegisterButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 13: Verify confirm password error message deplayed");
         Assert.assertEquals(registerPage.getConfirmPasswordErrorMessage(), "The password and confirmation password do not match.");
@@ -198,23 +191,23 @@ public class Nopcommerce_001_Register extends BaseTest {
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 01: Open to 'Register' page"); //add log
         registerPage = registerPage.openRegisterPageUrl(registerPageUrl);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 2: Select Gender radio button with value is" + gender);
-        registerPage.clickToGenderRadioBuntton(gender);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 2: Select Gender radio button with value is" + UserData.Register.GENDER);
+        registerPage.clickToGenderRadioBuntton(UserData.Register.GENDER);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 3: Input Firstname with value is" + firstName);
-        registerPage.inputToFirstNameTextbox(firstName);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 3: Input Firstname with value is" + UserData.Register.FIRSTNAME);
+        registerPage.inputToFirstNameTextbox(UserData.Register.FIRSTNAME);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 4: Input Lastname with value is" + lastName);
-        registerPage.inputToLastNameTextbox(lastName);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 4: Input Lastname with value is" + UserData.Register.LASTNAME);
+        registerPage.inputToLastNameTextbox(UserData.Register.LASTNAME);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 5: Select to Date of Birth Day dropdown with value is" + day);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthDay", day);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 5: Select to Date of Birth Day dropdown with value is" + UserData.Register.DAY);
+        registerPage.selectToDropdownByName("DateOfBirthDay", UserData.Register.DAY);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 6: Select to Date of Birth Month dropdown with value is" + month);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthMonth", month);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 6: Select to Date of Birth Month dropdown with value is" + UserData.Register.MONTH);
+        registerPage.selectToDropdownByName("DateOfBirthMonth", UserData.Register.MONTH);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 7: Select to Date of Birth Year dropdown with value is" + year);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthYear", year);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 7: Select to Date of Birth Year dropdown with value is" + UserData.Register.YEAR);
+        registerPage.selectToDropdownByName("DateOfBirthYear", UserData.Register.YEAR);
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 8: Input invalid email" + emailAddress);
         registerPage.inputEmailTextbox(emailAddress);
@@ -222,14 +215,14 @@ public class Nopcommerce_001_Register extends BaseTest {
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 9: Click To Newsletter checkbox");
         registerPage.clickToNewsletterCheckbox();
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 10: Input Password with value is" + password);
-        registerPage.inputPasswordTextbox(password);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 10: Input Password with value is" + UserData.Register.PASSWORD);
+        registerPage.inputPasswordTextbox(UserData.Register.PASSWORD);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 11: Input Confirm Password with value is" + password);
-        registerPage.inputConfirmPasswordTextbox(password);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 11: Input Confirm Password with value is" + UserData.Register.PASSWORD);
+        registerPage.inputConfirmPasswordTextbox(UserData.Register.PASSWORD);
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 12: Click to 'Login' button");
-        registerPage.clickToLoginButton();
+        registerPage.clickToRegisterButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 13: Verify Register success message deplayed");
         Assert.assertEquals(registerPage.getRegisterSuccessMesage(), "Your registration completed");
@@ -242,23 +235,23 @@ public class Nopcommerce_001_Register extends BaseTest {
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 01: Open to 'Register' page"); //add log
         registerPage = registerPage.openRegisterPageUrl(registerPageUrl);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 2: Select Gender radio button with value is" + gender);
-        registerPage.clickToGenderRadioBuntton(gender);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 2: Select Gender radio button with value is" + UserData.Register.GENDER);
+        registerPage.clickToGenderRadioBuntton(UserData.Register.GENDER);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 3: Input Firstname with value is" + firstName);
-        registerPage.inputToFirstNameTextbox(firstName);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 3: Input Firstname with value is" + UserData.Register.FIRSTNAME);
+        registerPage.inputToFirstNameTextbox(UserData.Register.FIRSTNAME);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 4: Input Lastname with value is" + lastName);
-        registerPage.inputToLastNameTextbox(lastName);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 4: Input Lastname with value is" + UserData.Register.LASTNAME);
+        registerPage.inputToLastNameTextbox(UserData.Register.LASTNAME);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 5: Select to Date of Birth Day dropdown with value is" + day);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthDay", day);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 5: Select to Date of Birth Day dropdown with value is" + UserData.Register.DAY);
+        registerPage.selectToDropdownByName("DateOfBirthDay", UserData.Register.DAY);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 6: Select to Date of Birth Month dropdown with value is" + month);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthMonth", month);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 6: Select to Date of Birth Month dropdown with value is" + UserData.Register.MONTH);
+        registerPage.selectToDropdownByName("DateOfBirthMonth", UserData.Register.MONTH);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 7: Select to Date of Birth Year dropdown with value is" + year);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthYear", year);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 7: Select to Date of Birth Year dropdown with value is" + UserData.Register.YEAR);
+        registerPage.selectToDropdownByName("DateOfBirthYear", UserData.Register.YEAR);
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 8: Input invalid email" + emailAddress);
         registerPage.inputEmailTextbox(emailAddress);
@@ -266,14 +259,14 @@ public class Nopcommerce_001_Register extends BaseTest {
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 9: Click To Newsletter checkbox");
         registerPage.clickToNewsletterCheckbox();
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 10: Input Password with value is" + password);
-        registerPage.inputPasswordTextbox(password);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 10: Input Password with value is" + UserData.Register.PASSWORD);
+        registerPage.inputPasswordTextbox(UserData.Register.PASSWORD);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 11: Input Confirm Password with value is" + password);
-        registerPage.inputConfirmPasswordTextbox(password);
+        ExtentTestManager.getTest().log(Status.INFO, "Register - Step 11: Input Confirm Password with value is" + UserData.Register.PASSWORD);
+        registerPage.inputConfirmPasswordTextbox(UserData.Register.PASSWORD);
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 12: Click to 'Login' button");
-        registerPage.clickToLoginButton();
+        registerPage.clickToRegisterButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Register - Step 13: Verify Existing email message deplayed");
         Assert.assertEquals(registerPage.getExistingEmailErrorMessage(), "The specified email already exists");

@@ -67,6 +67,11 @@ public class BasePage {
         return getWebElement(driver, locatorType).getText();
     }
 
+    public String getElementText(WebDriver driver, String locatorType, String... dynamicValues) {
+        return getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)).getText();
+    }
+
+
     public List<WebElement> getListWebElement(WebDriver driver, String locatorType) {
         return driver.findElements(getByLocator(locatorType));
     }
@@ -140,4 +145,13 @@ public class BasePage {
             return false;
         }
     }
+
+    public boolean isElementSelected(WebDriver driver, String locatorType) {
+        return getWebElement(driver, locatorType).isDisplayed();
+    }
+
+    public String getElementAttribute(WebDriver driver, String locatorType, String attributeName) {
+        return getWebElement(driver, locatorType).getAttribute(attributeName);
+    }
+
 }

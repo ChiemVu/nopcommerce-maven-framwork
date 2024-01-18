@@ -3,7 +3,6 @@ package pageObject;
 import commons.BasePage;
 import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
-import pageUIs.HomePageUI;
 import pageUIs.RegisterPageUI;
 
 public class RegisterPageObject extends BasePage {
@@ -18,9 +17,9 @@ public class RegisterPageObject extends BasePage {
         return PageGeneratorManager.getRegisterPage(driver);
     }
 
-    public void clickToLoginButton() {
-        waitForElementClickable(driver, RegisterPageUI.LOGIN_BUTTON);
-        clickToElement(driver, RegisterPageUI.LOGIN_BUTTON);
+    public void clickToRegisterButton() {
+        waitForElementClickable(driver, RegisterPageUI.REGISTER_BUTTON);
+        clickToElement(driver, RegisterPageUI.REGISTER_BUTTON);
     }
 
     public String getFirstNameErrorMessage() {
@@ -73,7 +72,7 @@ public class RegisterPageObject extends BasePage {
         sendKeyToElement(driver, RegisterPageUI.LASTNAME_TEXTBOX, lastName);
     }
 
-    public void selectToDropdownByName(WebDriver driver, String dropdownAttributeName, String dropdownValue) {
+    public void selectToDropdownByName(String dropdownAttributeName, String dropdownValue) {
         waitForElementClickable(driver, RegisterPageUI.DYNAMIC_DROPDOWN_BY_NAME, dropdownAttributeName);
         selectItemInDefaultDropdown(driver, RegisterPageUI.DYNAMIC_DROPDOWN_BY_NAME, dropdownValue, dropdownAttributeName);
     }
@@ -103,5 +102,4 @@ public class RegisterPageObject extends BasePage {
         clickToElement(driver, RegisterPageUI.LOGIN_LINK);
         return PageGeneratorManager.getLoginPage(driver);
     }
-
 }

@@ -1,6 +1,7 @@
 package com.nopcommerce;
 
 import com.aventstack.extentreports.Status;
+import com.nopcommerce.data.UserData;
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
@@ -18,8 +19,8 @@ import java.lang.reflect.Method;
 
 public class Nopcommerce_002_Login extends BaseTest {
     private WebDriver driver;
-    private String firstName, lastName, password, invalidPassword, emailAddress, gender, day, month, year;
-    String loginPageUrl, invalidEmail, notFoundEmail;
+    private String password, emailAddress;
+    String loginPageUrl;
 
     @Parameters({"browser", "url"})
     @BeforeClass
@@ -28,29 +29,20 @@ public class Nopcommerce_002_Login extends BaseTest {
         homePage = PageGeneratorManager.getHomePage(driver);
         registerPage = homePage.openRegisterPage();
 
-        gender = "Male";
-        firstName = "Vu";
-        lastName = "Chiem";
-        day = "10";
-        month = "June";
-        year = "1989";
-        emailAddress = "vtc" + generateFakeNumber() + "@gmail.com";
-        invalidEmail = "vtc@#gmail.com";
-        notFoundEmail = "123@gmail.com";
-        password = "123456";
-        invalidPassword = "12sfgdsfgf3";
+        emailAddress = UserData.Register.EMAIL_ADDRESS + generateFakeNumber() + "@gmail.com";
+        password = UserData.Register.PASSWORD;
 
-        registerPage.clickToGenderRadioBuntton(gender);
-        registerPage.inputToFirstNameTextbox(firstName);
-        registerPage.inputToLastNameTextbox(lastName);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthDay", day);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthMonth", month);
-        registerPage.selectToDropdownByName(driver, "DateOfBirthYear", year);
+        registerPage.clickToGenderRadioBuntton(UserData.Register.GENDER);
+        registerPage.inputToFirstNameTextbox(UserData.Register.FIRSTNAME);
+        registerPage.inputToLastNameTextbox(UserData.Register.LASTNAME);
+        registerPage.selectToDropdownByName("DateOfBirthDay", UserData.Register.DAY);
+        registerPage.selectToDropdownByName("DateOfBirthMonth", UserData.Register.MONTH);
+        registerPage.selectToDropdownByName("DateOfBirthYear", UserData.Register.YEAR);
         registerPage.inputEmailTextbox(emailAddress);
         registerPage.clickToNewsletterCheckbox();
         registerPage.inputPasswordTextbox(password);
         registerPage.inputConfirmPasswordTextbox(password);
-        registerPage.clickToLoginButton();
+        registerPage.clickToRegisterButton();
         Assert.assertEquals(registerPage.getRegisterSuccessMesage(), "Your registration completed");
         loginPage = registerPage.openLoginPage();
         loginPageUrl = loginPage.getCurrentPageUrl(driver);
@@ -65,7 +57,6 @@ public class Nopcommerce_002_Login extends BaseTest {
 
         ExtentTestManager.getTest().log(Status.INFO, "Login - Step 02: Verify Email error message deplayed");
         Assert.assertEquals(loginPage.getEmailErrorMessage(), "Please enter your email");
-
     }
 
     @Test
@@ -74,8 +65,8 @@ public class Nopcommerce_002_Login extends BaseTest {
         ExtentTestManager.getTest().log(Status.INFO, "Login - Step 01: Open 'Login' page");
         loginPage = loginPage.openLoginPageUrl(loginPageUrl);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Login - Step 02: Input to Email textbox with value is" + invalidEmail);
-        loginPage.inputToEmailTextbox(invalidEmail);
+        ExtentTestManager.getTest().log(Status.INFO, "Login - Step 02: Input to Email textbox with value is" + UserData.Login.LOGIN_INVALID_EMAIL);
+        loginPage.inputToEmailTextbox(UserData.Login.LOGIN_INVALID_EMAIL);
 
         ExtentTestManager.getTest().log(Status.INFO, "Login - Step 03: Input to Password textbox with value is" + password);
         loginPage.inputToPasswordTextbox(password);
@@ -94,8 +85,8 @@ public class Nopcommerce_002_Login extends BaseTest {
         ExtentTestManager.getTest().log(Status.INFO, "Login - Step 01: Open 'Login' page");
         loginPage = loginPage.openLoginPageUrl(loginPageUrl);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Login - Step 02: Input to Email textbox with value is" + notFoundEmail);
-        loginPage.inputToEmailTextbox(notFoundEmail);
+        ExtentTestManager.getTest().log(Status.INFO, "Login - Step 02: Input to Email textbox with value is" + UserData.Login.LOGIN_NOT_FOUND_EMAIL);
+        loginPage.inputToEmailTextbox(UserData.Login.LOGIN_NOT_FOUND_EMAIL);
 
         ExtentTestManager.getTest().log(Status.INFO, "Login - Step 03: Input to Password textbox with value is" + password);
         loginPage.inputToPasswordTextbox(password);
@@ -133,8 +124,8 @@ public class Nopcommerce_002_Login extends BaseTest {
         ExtentTestManager.getTest().log(Status.INFO, "Login - Step 02: Input to Email textbox with value is" + emailAddress);
         loginPage.inputToEmailTextbox(emailAddress);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Login - Step 03: Input to Password textbox with value is" + invalidPassword);
-        loginPage.inputToPasswordTextbox(invalidPassword);
+        ExtentTestManager.getTest().log(Status.INFO, "Login - Step 03: Input to Password textbox with value is" + UserData.Login.LOGIN_INVALID_PASSWORD);
+        loginPage.inputToPasswordTextbox(UserData.Login.LOGIN_INVALID_PASSWORD);
 
         ExtentTestManager.getTest().log(Status.INFO, "Login - Step 04: Click to 'Login' button");
         loginPage.clickToLoginButton();
