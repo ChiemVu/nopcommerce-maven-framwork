@@ -5,10 +5,11 @@ import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 import pageUIs.RegisterPageUI;
 
-public class RegisterPageObject extends BasePage {
+public class RegisterPageObject extends BaseAction {
     private WebDriver driver;
 
     public RegisterPageObject(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 

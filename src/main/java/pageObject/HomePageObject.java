@@ -5,10 +5,11 @@ import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 import pageUIs.HomePageUI;
 
-public class HomePageObject extends BasePage {
+public class HomePageObject extends BaseAction {
     private WebDriver driver;
 
     public HomePageObject(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 

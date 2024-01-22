@@ -123,6 +123,11 @@ public class BasePage {
         }
     }
 
+    public void selectItemInDefaultDropdown(WebDriver driver, String locatorType, String textItem) {
+        Select select = new Select(getWebElement(driver, locatorType));
+        select.selectByVisibleText(textItem);
+    }
+
     public void selectItemInDefaultDropdown(WebDriver driver, String locatorType, String textItem, String... dynamicValue) {
         Select select = new Select(getWebElement(driver, getDynamicXpath(locatorType, dynamicValue)));
         select.selectByVisibleText(textItem);

@@ -1,13 +1,13 @@
 package pageObject;
 
-import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 import pageUIs.CustomerInfoPageUI;
 
-public class CustomerInfoPageObject extends BasePage {
+public class CustomerInfoPageObject extends BaseAction {
     WebDriver driver;
 
     public CustomerInfoPageObject(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 
@@ -71,12 +71,12 @@ public class CustomerInfoPageObject extends BasePage {
         return getElementText(driver, CustomerInfoPageUI.DYNAMIC_SELECTED_TEXT_DROPDOWN_BY_ATTRIBUTE_NAME, dropdownAttributeName);
     }
 
-    public String getEmailText() {
+    public String getEmailValue() {
         waitForElementVisible(driver, CustomerInfoPageUI.EMAIL_TEXTBOX);
         return getElementAttribute(driver, CustomerInfoPageUI.EMAIL_TEXTBOX, "value");
     }
 
-    public String getCompanyNameText() {
+    public String getCompanyNameValue() {
         waitForElementVisible(driver, CustomerInfoPageUI.COMPANY_NAME_TEXTBOX);
         return getElementAttribute(driver, CustomerInfoPageUI.COMPANY_NAME_TEXTBOX, "value");
     }

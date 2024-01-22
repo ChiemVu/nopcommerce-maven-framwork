@@ -32,9 +32,24 @@ public class UserData {
         public static final String DAY = "1";
         public static final String MONTH = "January";
         public static final String YEAR = "1999";
-        public static final String EMAIL_ADDRESS = "automation.vn@gmail.com";
+        public static final String EMAIL_ADDRESS = "automation.vn35@gmail.com";
         public static final String COMPANY_NAME = "AutonmationFC";
     }
 
+    public class AddNewAddress {
+        public static final String FIRSTNAME = "Automation";
+        public static final String LASTNAME = "FC";
+        public static final String EMAIL = "automationfc.vn34@gmail.com";
+        public static final String COMPANY = "Automation FC";
+        public static final String COUNTRY = "Viet Nam";
+        public static final String STATE_PROVINCE = "Other";
+        public static final String CITY = "Da Nang";
+        public static final String ADDRESS_1 = "123/04 Le Lai";
+        public static final String ADDRESS_2 = "234/05 Hai Phong";
+        public static final String ZIP_POSTAL_CODE = "550000";
+        public static final String PHONE_NUMBER = "0123456789";
+        public static final String FAX_NUMBER = "0987654321";
+
+    }
 
 }
