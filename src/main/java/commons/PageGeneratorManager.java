@@ -28,4 +28,8 @@ public class PageGeneratorManager {
         return new AddNewAddressPageObject(driver);
     }
 
+    public static ChangePasswordPageObject getChangePasswordPage(WebDriver driver) {
+        return new ChangePasswordPageObject(driver);
+    }
+
 }

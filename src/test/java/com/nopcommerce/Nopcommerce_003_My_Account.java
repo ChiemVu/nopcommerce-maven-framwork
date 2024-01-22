@@ -203,7 +203,63 @@ public class Nopcommerce_003_My_Account extends BaseTest {
 
     @Test
     public void My_Account_03_Change_Password(Method method) {
+        ExtentTestManager.startTest(method.getName(), "My_Account_03_Change_Password"); //start TC
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 01: Open 'Change Password' link");
+        changePasswordPage = addressPage.openChangePasswordPage(driver);
 
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 01: Input old password with value is: " + UserData.Register.PASSWORD);
+        changePasswordPage.inputToOldPasswordTextbox(UserData.Register.PASSWORD);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 02: Input new password with value is: " + UserData.ChangePassword.NEW_PASSWORD);
+        changePasswordPage.inputToNewPasswordTextbox(UserData.ChangePassword.NEW_PASSWORD);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 03: Input confrim password with value is: " + UserData.ChangePassword.NEW_PASSWORD);
+        changePasswordPage.inputToConfirmPasswordTextbox(UserData.ChangePassword.NEW_PASSWORD);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 04: Click To Change Password button");
+        changePasswordPage.clickToChangePasswordButton();
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 05: Verify Change Password success message displayed");
+        Assert.assertEquals(changePasswordPage.getChangePasswordSuccessMessage(), "Password was changed");
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 06: Click To Close Icon");
+        changePasswordPage.clickToCloseIcon();
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 06: Click To Logout link");
+        homePage = changePasswordPage.clickToLogoutLink();
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 07: Verify Register Link displayed");
+        Assert.assertTrue(homePage.isRegisterLinkDisplayed());
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 08: Open Login link");
+        loginPage = homePage.openLoginPage();
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 09: Input to Email textbox with value is" + UserData.CustomerInfo.EMAIL_ADDRESS);
+        loginPage.inputToEmailTextbox(UserData.CustomerInfo.EMAIL_ADDRESS);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 10: Input to Password textbox with value is" + UserData.Register.PASSWORD);
+        loginPage.inputToPasswordTextbox(UserData.Register.PASSWORD);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 11: Click to 'Login' button");
+        loginPage.clickToLoginButton();
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 12: Verify error message deplayed");
+        Assert.assertEquals(loginPage.getEmailUnsuccessfullMessage(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 13: Reopen Login link");
+        loginPage.openLoginPage();
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 14: Input to Email textbox with value is" + UserData.CustomerInfo.EMAIL_ADDRESS);
+        loginPage.inputToEmailTextbox(UserData.CustomerInfo.EMAIL_ADDRESS);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 15: Input to Password textbox with value is" + UserData.ChangePassword.NEW_PASSWORD);
+        loginPage.inputToPasswordTextbox(UserData.ChangePassword.NEW_PASSWORD);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 16: Click to 'Login' button");
+        homePage = loginPage.clickToLoginButton();
+
+        ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 17: Verify My Account link is displayed");
+        Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
     }
 
     @Test
@@ -223,4 +279,5 @@ public class Nopcommerce_003_My_Account extends BaseTest {
     private CustomerInfoPageObject customerInfoPage;
     private AddressPageObject addressPage;
     private AddNewAddressPageObject addNewAddressPage;
+    private ChangePasswordPageObject changePasswordPage;
 }

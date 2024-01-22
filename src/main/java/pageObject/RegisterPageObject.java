@@ -97,10 +97,4 @@ public class RegisterPageObject extends BaseAction {
         waitForElementVisible(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX);
         sendKeyToElement(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX, password);
     }
-
-    public LoginPageObject openLoginPage() {
-        waitForElementClickable(driver, RegisterPageUI.LOGIN_LINK);
-        clickToElement(driver, RegisterPageUI.LOGIN_LINK);
-        return PageGeneratorManager.getLoginPage(driver);
-    }
 }
