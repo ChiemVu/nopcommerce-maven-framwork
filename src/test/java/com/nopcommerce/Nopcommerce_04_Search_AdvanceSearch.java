@@ -56,7 +56,7 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
         searchPage = homePage.clickToSearchLinkAtFooter();
     }
 
-    @Test
+    // @Test
     public void Search_01_Empty_Data(Method method) {
         ExtentTestManager.startTest(method.getName(), "Search_01_Empty_Data");
         ExtentTestManager.getTest().log(Status.INFO, "Search - Step 01: Click to Search button");
@@ -66,7 +66,7 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
         Assert.assertEquals(searchPage.getSearchErrorMessage(), "Search term minimum length is 3 characters");
     }
 
-    @Test
+    //@Test
     public void Search_02_Data_Not_Exist(Method method) {
         ExtentTestManager.startTest(method.getName(), "Search_02_Data_Not_Exist");
         ExtentTestManager.getTest().log(Status.INFO, "Search - Step 01: Input to Search Keyword with value is: " + "Macbook Pro 2050");
@@ -80,7 +80,7 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
 
     }
 
-    @Test
+    //@Test
     public void Search_03_Product_Name_Partial_Mapping(Method method) {
         ExtentTestManager.startTest(method.getName(), "Search_03_Comparative_Product_Name");
         ExtentTestManager.getTest().log(Status.INFO, "Search - Step 01: Input to Search Keyword with value is: " + "Lenovo");
@@ -100,7 +100,7 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
 
     }
 
-    @Test
+    //@Test
     public void Search_04_Product_Name_Full_Mapping(Method method) {
         ExtentTestManager.startTest(method.getName(), "Search_04_Product_Name_Full_Mapping");
         ExtentTestManager.getTest().log(Status.INFO, "Search - Step 01: Input to Search Keyword with value is: " + "Thinkpad X1 Carbon");

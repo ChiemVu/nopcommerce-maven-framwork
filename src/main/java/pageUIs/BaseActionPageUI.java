@@ -9,5 +9,5 @@ public class BaseActionPageUI {
     public static final String SEARCH_TEXTBOX = "xpath=//input[@id='small-searchterms']";
     public static final String SEARCH_BUTTON_AT_HEADER = "css=button.search-box-button";
     public static final String SEARCH_LINK_AT_FOOTER = "xpath=//a[text()='Search']";
-    public static final String DYNAMIC_CHECKBOX_BY_LABEL_NAME = "xpath=//label[string()='%s']/input";
+    public static final String DYNAMIC_CHECKBOX_BY_LABEL_NAME = "xpath=//label[text()='%s']/preceding-sibling::input";
 }
