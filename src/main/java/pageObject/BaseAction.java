@@ -56,9 +56,15 @@ public class BaseAction extends BasePage {
         sendKeyToElement(driver, BaseActionPageUI.SEARCH_TEXTBOX, searchValue);
     }
 
-    public SearchPageObject clickToSearchButton() {
-        waitForElementClickable(driver, BaseActionPageUI.SEARCH_BUTTON);
-        clickToElement(driver, BaseActionPageUI.SEARCH_BUTTON);
+    public SearchPageObject clickToSearchButtonAtHeader() {
+        waitForElementClickable(driver, BaseActionPageUI.SEARCH_BUTTON_AT_HEADER);
+        clickToElement(driver, BaseActionPageUI.SEARCH_BUTTON_AT_HEADER);
+        return PageGeneratorManager.getSearchPage(driver);
+    }
+
+    public SearchPageObject clickToSearchLinkAtFooter() {
+        waitForElementClickable(driver, BaseActionPageUI.SEARCH_LINK_AT_FOOTER);
+        clickToElement(driver, BaseActionPageUI.SEARCH_LINK_AT_FOOTER);
         return PageGeneratorManager.getSearchPage(driver);
     }
 }

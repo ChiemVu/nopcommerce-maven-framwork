@@ -272,7 +272,7 @@ public class Nopcommerce_003_My_Account extends BaseTest {
         homePage.inputToSearchTextbox(UserData.ProductReview.SEARCH_VALUE);
 
         ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 02: Click To Search button");
-        searchPage = homePage.clickToSearchButton();
+        searchPage = homePage.clickToSearchButtonAtHeader();
 
         ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 03: Get product name the of first in the list item");
         productName = searchPage.getFristProductNameOfListSearchProduct();

@@ -76,6 +76,10 @@ public class BasePage {
         return driver.findElements(getByLocator(locatorType));
     }
 
+    public int getElementSize(WebDriver driver, String locatorType) {
+        return getListWebElement(driver, locatorType).size();
+    }
+
     public void clickToElement(WebDriver driver, String locatorType) {
         if (driver.toString().contains("internet explorer")) {
             clickToElementByJS(driver, locatorType);
@@ -157,6 +161,17 @@ public class BasePage {
 
     public String getElementAttribute(WebDriver driver, String locatorType, String attributeName) {
         return getWebElement(driver, locatorType).getAttribute(attributeName);
+    }
+
+    public void scrollToElement(WebDriver driver, String locatorType) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, locatorType));
+    }
+
+    public void uncheckToElement(WebDriver driver, String locator) {
+        if (getWebElement(driver, locator).isSelected()) {
+            getWebElement(driver, locator).click();
+        }
     }
 
 }

@@ -12,7 +12,7 @@
 
         <classes>
 
-            <class name="com.nopcommerce.Nopcommerce_003_My_Account"/>
+            <class name="com.nopcommerce.Nopcommerce_04_Search_AdvanceSearch"/>
         </classes>
     </test>
 

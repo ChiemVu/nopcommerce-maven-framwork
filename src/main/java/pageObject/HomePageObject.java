@@ -3,6 +3,7 @@ package pageObject;
 import commons.BasePage;
 import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
+import pageUIs.BaseActionPageUI;
 import pageUIs.HomePageUI;
 
 public class HomePageObject extends BaseAction {
@@ -28,5 +29,10 @@ public class HomePageObject extends BaseAction {
     public boolean isRegisterLinkDisplayed() {
         waitForElementVisible(driver, HomePageUI.REGISTER_LINK);
         return isElementDisplayed(driver, HomePageUI.REGISTER_LINK);
+    }
+
+    public void scrollToSearchLinkInFooter() {
+        waitForElementVisible(driver, BaseActionPageUI.SEARCH_LINK_AT_FOOTER);
+        scrollToElement(driver, BaseActionPageUI.SEARCH_LINK_AT_FOOTER);
     }
 }
