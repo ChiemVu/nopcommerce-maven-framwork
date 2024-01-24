@@ -32,4 +32,20 @@ public class PageGeneratorManager {
         return new ChangePasswordPageObject(driver);
     }
 
+    public static SearchPageObject getSearchPage(WebDriver driver) {
+        return new SearchPageObject(driver);
+    }
+
+    public static ProductDetailPageObject getProductDetailPage(WebDriver driver) {
+        return new ProductDetailPageObject(driver);
+    }
+
+    public static ProductReviewPageObject getProductReviewPage(WebDriver driver) {
+        return new ProductReviewPageObject(driver);
+    }
+
+    public static MyProductReviewPageObject getMyProductReviewPage(WebDriver driver) {
+        return new MyProductReviewPageObject(driver);
+    }
+
 }

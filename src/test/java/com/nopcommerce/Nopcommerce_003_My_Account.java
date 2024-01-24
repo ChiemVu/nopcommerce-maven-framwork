@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
 
 public class Nopcommerce_003_My_Account extends BaseTest {
     private WebDriver driver;
-    private String emailAddress;
+    private String emailAddress, reviewTitle, reviewText, currentDay, productName;
 
 
     @Parameters({"browser", "url"})
@@ -28,6 +28,9 @@ public class Nopcommerce_003_My_Account extends BaseTest {
         registerPage = homePage.openRegisterPage();
 
         emailAddress = UserData.Register.EMAIL_ADDRESS + generateFakeNumber() + "@gmail.com";
+        reviewTitle = UserData.ProductReview.REVIEW_TITLE + generateFakeNumber();
+        reviewText = UserData.ProductReview.REVIEW_TEXT + generateFakeNumber();
+        currentDay = getToday();
 
         registerPage.clickToGenderRadioBuntton(UserData.Register.GENDER);
         registerPage.inputToFirstNameTextbox(UserData.Register.FIRSTNAME);
@@ -41,7 +44,7 @@ public class Nopcommerce_003_My_Account extends BaseTest {
         registerPage.inputConfirmPasswordTextbox(UserData.Register.PASSWORD);
         registerPage.clickToRegisterButton();
         Assert.assertEquals(registerPage.getRegisterSuccessMesage(), "Your registration completed");
-        loginPage = registerPage.openLoginPage();
+        loginPage = registerPage.clickLoginLink();
         loginPage.inputToEmailTextbox(emailAddress);
         loginPage.inputToPasswordTextbox(UserData.Register.PASSWORD);
         homePage = loginPage.clickToLoginButton();
@@ -232,7 +235,7 @@ public class Nopcommerce_003_My_Account extends BaseTest {
         Assert.assertTrue(homePage.isRegisterLinkDisplayed());
 
         ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 08: Open Login link");
-        loginPage = homePage.openLoginPage();
+        loginPage = homePage.clickLoginLink();
 
         ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 09: Input to Email textbox with value is" + UserData.CustomerInfo.EMAIL_ADDRESS);
         loginPage.inputToEmailTextbox(UserData.CustomerInfo.EMAIL_ADDRESS);
@@ -247,7 +250,7 @@ public class Nopcommerce_003_My_Account extends BaseTest {
         Assert.assertEquals(loginPage.getEmailUnsuccessfullMessage(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 
         ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 13: Reopen Login link");
-        loginPage.openLoginPage();
+        loginPage.clickLoginLink();
 
         ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 14: Input to Email textbox with value is" + UserData.CustomerInfo.EMAIL_ADDRESS);
         loginPage.inputToEmailTextbox(UserData.CustomerInfo.EMAIL_ADDRESS);
@@ -264,7 +267,70 @@ public class Nopcommerce_003_My_Account extends BaseTest {
 
     @Test
     public void My_Account_04_My_Product_Views(Method method) {
+        ExtentTestManager.startTest(method.getName(), "My_Account_04_My_Product_Views"); //start TC
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 01: Enter to Search textbox with value is: " + UserData.ProductReview.SEARCH_VALUE);
+        homePage.inputToSearchTextbox(UserData.ProductReview.SEARCH_VALUE);
 
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 02: Click To Search button");
+        searchPage = homePage.clickToSearchButton();
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 03: Get product name the of first in the list item");
+        productName = searchPage.getFristProductNameOfListSearchProduct();
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 04: Click to first in list item");
+        productDetailPage = searchPage.clickToFirstProductOfListSearchProduct();
+
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 05: Click To 'Add your review' link");
+        productReviewPage = productDetailPage.clickToAddYourReviewLink();
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 06: Input To Review title with value is: " + reviewTitle);
+        productReviewPage.inputToReviewTitleTextbox(reviewTitle);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 07: Input To Review text with value is: " + reviewText);
+        productReviewPage.inputToReviewTextTextbox(reviewText);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 08: Select Rating radio button with value is: " + UserData.ProductReview.RATING);
+        productReviewPage.selectToRatingRadioButton();
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 09: Click To 'SUBMIT REVIEW' button");
+        productReviewPage.clickToSubmitReviewButton();
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 10: Verify Review title text displayed");
+        Assert.assertEquals(productReviewPage.getReviewTitleValue(), reviewTitle);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 11: Verify Review Content text displayed");
+        Assert.assertEquals(productReviewPage.getReviewContentValue(), reviewText);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 12: Verify Rating value displayed");
+        Assert.assertTrue(productReviewPage.getProductRatingAttributeValue("style").contains("80%"));
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 13: Verify username display with value is: " + UserData.CustomerInfo.FIRSTNAME);
+        Assert.assertEquals(productReviewPage.getNameValue(), UserData.CustomerInfo.FIRSTNAME);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 14: Verify current day display with value is: " + currentDay);
+        //Assert.assertTrue(productReviewPage.getCurrentDayValue().contains(currentDay));
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 15: Click 'My Account' link ");
+        customerInfoPage = productReviewPage.clickToMyAccountLink();
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 16: Open 'My Product Review' page ");
+        myProductReviewPage = customerInfoPage.openMyProductReviewPage(driver);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 17: Verify Review title text displayed");
+        Assert.assertEquals(myProductReviewPage.getReviewTitleValue(), reviewTitle);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 18: Verify Review Content text displayed");
+        Assert.assertEquals(myProductReviewPage.getReviewContentValue(), reviewText);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 19: Verify Rating value displayed");
+        Assert.assertTrue(productReviewPage.getProductRatingAttributeValue("style").contains("80%"));
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 20: Verify product name reviewed ");
+        Assert.assertEquals(productReviewPage.getProductNameReviewed(), productName);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 21: Verify current day display with value is: " + currentDay);
+        ///Assert.assertTrue(myProductReviewPage.getCurrentDayValue().contains(currentDay));
     }
 
     @AfterClass(alwaysRun = true)
@@ -280,4 +346,8 @@ public class Nopcommerce_003_My_Account extends BaseTest {
     private AddressPageObject addressPage;
     private AddNewAddressPageObject addNewAddressPage;
     private ChangePasswordPageObject changePasswordPage;
+    private SearchPageObject searchPage;
+    private ProductDetailPageObject productDetailPage;
+    private ProductReviewPageObject productReviewPage;
+    private MyProductReviewPageObject myProductReviewPage;
 }

@@ -25,12 +25,6 @@ public class HomePageObject extends BaseAction {
         return isElementDisplayed(driver, HomePageUI.MY_ACCOUNT_LINK);
     }
 
-    public CustomerInfoPageObject clickToMyAccountLink() {
-        waitForElementClickable(driver, HomePageUI.MY_ACCOUNT_LINK);
-        clickToElement(driver, HomePageUI.MY_ACCOUNT_LINK);
-        return PageGeneratorManager.getCustomerInfoPage(driver);
-    }
-
     public boolean isRegisterLinkDisplayed() {
         waitForElementVisible(driver, HomePageUI.REGISTER_LINK);
         return isElementDisplayed(driver, HomePageUI.REGISTER_LINK);

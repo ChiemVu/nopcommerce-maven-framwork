@@ -32,14 +32,14 @@ public class UserData {
         public static final String DAY = "1";
         public static final String MONTH = "January";
         public static final String YEAR = "1999";
-        public static final String EMAIL_ADDRESS = "automation.vn5@gmail.com";
+        public static final String EMAIL_ADDRESS = "automation.vn@gmail.com";
         public static final String COMPANY_NAME = "AutonmationFC";
     }
 
     public class AddNewAddress {
         public static final String FIRSTNAME = "Automation";
         public static final String LASTNAME = "FC";
-        public static final String EMAIL = "automationfc.vn5@gmail.com";
+        public static final String EMAIL = "automationfc.vn@gmail.com";
         public static final String COMPANY = "Automation FC";
         public static final String COUNTRY = "Viet Nam";
         public static final String STATE_PROVINCE = "Other";
@@ -54,6 +54,13 @@ public class UserData {
 
     public class ChangePassword {
         public static final String NEW_PASSWORD = "654321";
+    }
+
+    public class ProductReview {
+        public static final String SEARCH_VALUE = "Apple";
+        public static final String REVIEW_TITLE = "Review Title";
+        public static final String REVIEW_TEXT = "Review Text.\nReview Text.";
+        public static final String RATING = "Good";
     }
 
 }

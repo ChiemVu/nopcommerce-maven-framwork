@@ -44,7 +44,7 @@ public class Nopcommerce_002_Login extends BaseTest {
         registerPage.inputConfirmPasswordTextbox(password);
         registerPage.clickToRegisterButton();
         Assert.assertEquals(registerPage.getRegisterSuccessMesage(), "Your registration completed");
-        loginPage = registerPage.openLoginPage();
+        loginPage = registerPage.clickLoginLink();
         loginPageUrl = loginPage.getCurrentPageUrl(driver);
 
     }
