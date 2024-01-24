@@ -60,24 +60,9 @@ public class SearchPageObject extends BaseAction {
         return getElementText(driver, SearchPageUI.THE_SECOND_OF_PRODUCT_NAME);
     }
 
-    public void checkToAdvancedSearchCheckbox() {
-        waitForElementClickable(driver, SearchPageUI.ADVANCED_SEARCH_CHECKBOX);
-        checkToDefaultCheckboxOrRadio(driver, SearchPageUI.ADVANCED_SEARCH_CHECKBOX);
-    }
-
     public void selectToCategoryDropdown(String category) {
         waitForElementClickable(driver, SearchPageUI.CATEGORY_DROPDOWN);
         selectItemInDefaultDropdown(driver, SearchPageUI.CATEGORY_DROPDOWN, category);
-    }
-
-    public void uncheckToAutomationSearchSubCategoriesCheckbox() {
-        waitForElementClickable(driver, SearchPageUI.AUTOMATION_SEARCH_SUB_CATEGORIES_CHECKBOX);
-        uncheckToElement(driver, SearchPageUI.AUTOMATION_SEARCH_SUB_CATEGORIES_CHECKBOX);
-    }
-
-    public void checkToAutomationSearchSubCategoriesCheckbox() {
-        waitForElementClickable(driver, SearchPageUI.AUTOMATION_SEARCH_SUB_CATEGORIES_CHECKBOX);
-        checkToDefaultCheckboxOrRadio(driver, SearchPageUI.AUTOMATION_SEARCH_SUB_CATEGORIES_CHECKBOX);
     }
 
     public void selectToManufacturerDropdown(String manufacturer) {

@@ -89,6 +89,10 @@ public class BasePage {
         }
     }
 
+    public void clickToElement(WebDriver driver, String locator, String... dynamicValue) {
+        getWebElement(driver, getDynamicXpath(locator, dynamicValue)).click();
+    }
+
     public void clickToElementByJS(WebDriver driver, String locatorType) {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("arguments[0].click();", getWebElement(driver, locatorType));
@@ -173,5 +177,10 @@ public class BasePage {
             getWebElement(driver, locator).click();
         }
     }
+
+    public boolean isElementSelected(WebDriver driver, String locator, String... dynamicValue) {
+        return getWebElement(driver, getDynamicXpath(locator, dynamicValue)).isSelected();
+    }
+
 
 }

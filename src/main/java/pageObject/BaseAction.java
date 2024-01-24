@@ -67,4 +67,17 @@ public class BaseAction extends BasePage {
         clickToElement(driver, BaseActionPageUI.SEARCH_LINK_AT_FOOTER);
         return PageGeneratorManager.getSearchPage(driver);
     }
+
+    public void checkToCheckboxByLabelName(String checkboxLabelName) {
+        if (!isElementSelected(driver, BaseActionPageUI.DYNAMIC_CHECKBOX_BY_LABEL_NAME, checkboxLabelName)) {
+            clickToElement(driver, BaseActionPageUI.DYNAMIC_CHECKBOX_BY_LABEL_NAME, checkboxLabelName);
+        }
+    }
+
+    public void uncheckToCheckboxByLabelName(String checkboxLabelName) {
+        if (isElementSelected(driver, BaseActionPageUI.DYNAMIC_CHECKBOX_BY_LABEL_NAME, checkboxLabelName)) {
+            clickToElement(driver, BaseActionPageUI.DYNAMIC_CHECKBOX_BY_LABEL_NAME, checkboxLabelName);
+        }
+    }
+
 }
