@@ -48,4 +48,11 @@ public class PageGeneratorManager {
         return new MyProductReviewPageObject(driver);
     }
 
+    public static ComputersPageObject getComputersPage(WebDriver driver) {
+        return new ComputersPageObject(driver);
+    }
+
+    public static NotebooksPageObject getNotebooksPage(WebDriver driver) {
+        return new NotebooksPageObject(driver);
+    }
 }

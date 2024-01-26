@@ -46,10 +46,6 @@ public class SearchPageObject extends BaseAction {
         return getElementAttribute(driver, SearchPageUI.SEARCH_KEYWORD_TEXTBOX, attributeValueName);
     }
 
-    public long getNumberOfProduct() {
-        return getElementSize(driver, SearchPageUI.NUMBER_PRODUCT);
-    }
-
     public String getTheFirstOfProductNameDisplay() {
         waitForElementVisible(driver, SearchPageUI.THE_FIRST_OF_PRODUCT_NAME);
         return getElementText(driver, SearchPageUI.THE_FIRST_OF_PRODUCT_NAME);

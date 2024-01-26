@@ -5,6 +5,7 @@ import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 import pageUIs.BaseActionPageUI;
 import pageUIs.HomePageUI;
+import pageUIs.SearchPageUI;
 
 public class BaseAction extends BasePage {
     WebDriver driver;
@@ -80,4 +81,19 @@ public class BaseAction extends BasePage {
         }
     }
 
+    public ComputersPageObject clickToComputerHeaderMenu() {
+        waitForElementClickable(driver, BaseActionPageUI.COMPUTER_HEADER_MENU);
+        clickToElement(driver, BaseActionPageUI.COMPUTER_HEADER_MENU);
+        return PageGeneratorManager.getComputersPage(driver);
+    }
+
+    public NotebooksPageObject clickToNotebooksNavigationSubmenu() {
+        waitForElementClickable(driver, BaseActionPageUI.NAVIGATION_NOTEBOOKS_SUBMENU);
+        clickToElement(driver, BaseActionPageUI.NAVIGATION_NOTEBOOKS_SUBMENU);
+        return PageGeneratorManager.getNotebooksPage(driver);
+    }
+
+    public long getNumberOfProduct() {
+        return getElementSize(driver, BaseActionPageUI.NUMBER_PRODUCT);
+    }
 }

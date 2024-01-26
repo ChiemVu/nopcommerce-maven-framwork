@@ -12,7 +12,7 @@
 
         <classes>
 
-            <class name="com.nopcommerce.Nopcommerce_04_Search_AdvanceSearch"/>
+            <class name="com.nopcommerce.Nopcommerce_005_Sort_Display_Paging"/>
         </classes>
     </test>
 

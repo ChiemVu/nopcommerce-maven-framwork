@@ -124,6 +124,29 @@ public class BasePage {
         explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locatorType)));
     }
 
+    public void waitForElementVisible(WebDriver driver, String locatorType, String... dynamicValues) {
+        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIME));
+        explicitWait.until(ExpectedConditions
+                .visibilityOfElementLocated(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
+    }
+
+    public boolean isElementUndisplayed(WebDriver driver, String locator) {
+        overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIME);
+        List<WebElement> elements = getListWebElement(driver, locator);
+        overrideImplicitTimeout(driver, GlobalConstants.LONG_TIME);
+        if (elements.size() == 0) {
+            return true;
+        } else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void overrideImplicitTimeout(WebDriver driver, long timeOut) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.SHORT_TIME));
+    }
+
     public void checkToDefaultCheckboxOrRadio(WebDriver driver, String locatorType) {
         WebElement element = getWebElement(driver, locatorType);
         if (!element.isSelected()) {
