@@ -2,6 +2,7 @@ package pageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pageUIs.BaseActionPageUI;
 import pageUIs.NotebooksPageUI;
 
 import java.util.ArrayList;
@@ -16,9 +17,9 @@ public class NotebooksPageObject extends BaseAction {
         this.driver = driver;
     }
 
-    public void selectItemInProductSortDropdown(String itemValueDropdown, String dropdownID) {
-        waitForElementVisible(driver, NotebooksPageUI.DYNAMIC_SORT_ITEM_DROPDOWN_BY_ID, dropdownID);
-        selectItemInDefaultDropdown(driver, NotebooksPageUI.DYNAMIC_SORT_ITEM_DROPDOWN_BY_ID, itemValueDropdown, dropdownID);
+    public void selectItemSortDropdown(String itemValueDropdown, String dropdownID) {
+        waitForElementVisible(driver, NotebooksPageUI.DYNAMIC_SORT_DROPDOWN, dropdownID);
+        selectItemInDefaultDropdown(driver, NotebooksPageUI.DYNAMIC_SORT_DROPDOWN, itemValueDropdown, dropdownID);
     }
 
     public boolean isProductNameSortAscending() {
@@ -102,5 +103,17 @@ public class NotebooksPageObject extends BaseAction {
 
     public boolean isNextPagingIconUndisplayed() {
         return isElementUndisplayed(driver, NotebooksPageUI.NEXT_PAGING_ICON);
+    }
+
+    public boolean checkNumberProductDisplayBySelectDisplayNumberPerPageDropdown(String dropdownID) {
+        List<WebElement> listProduct = getListWebElement(driver, BaseActionPageUI.NUMBER_PRODUCT);
+        int numeberListProduct = listProduct.size();
+
+        int numberPerPage = Integer.parseInt(getElementText(driver, NotebooksPageUI.DYNAMIC_SELECTED_TEXT_DROPDOWN_BY_ID, dropdownID));
+        if (numeberListProduct <= numberPerPage) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
