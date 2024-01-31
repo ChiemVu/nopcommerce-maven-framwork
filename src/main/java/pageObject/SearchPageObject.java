@@ -1,9 +1,7 @@
 package pageObject;
 
 import commons.PageGeneratorManager;
-import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.WebDriver;
-import pageUIs.BaseActionPageUI;
 import pageUIs.SearchPageUI;
 
 public class SearchPageObject extends BaseAction {
@@ -12,11 +10,6 @@ public class SearchPageObject extends BaseAction {
     public SearchPageObject(WebDriver driver) {
         super(driver);
         this.driver = driver;
-    }
-
-    public String getFristProductNameOfListSearchProduct() {
-        waitForElementVisible(driver, SearchPageUI.FIRST_PRODUCT_OF_LIST_SEARCH);
-        return getElementText(driver, SearchPageUI.FIRST_PRODUCT_OF_LIST_SEARCH);
     }
 
     public ProductDetailPageObject clickToFirstProductOfListSearchProduct() {
@@ -44,16 +37,6 @@ public class SearchPageObject extends BaseAction {
     public String getSearchKeywordAttributeValue(String attributeValueName) {
         waitForElementVisible(driver, SearchPageUI.SEARCH_KEYWORD_TEXTBOX);
         return getElementAttribute(driver, SearchPageUI.SEARCH_KEYWORD_TEXTBOX, attributeValueName);
-    }
-
-    public String getTheFirstOfProductNameDisplay() {
-        waitForElementVisible(driver, SearchPageUI.THE_FIRST_OF_PRODUCT_NAME);
-        return getElementText(driver, SearchPageUI.THE_FIRST_OF_PRODUCT_NAME);
-    }
-
-    public String getTheSecondOfProductNameDisplay() {
-        waitForElementVisible(driver, SearchPageUI.THE_SECOND_OF_PRODUCT_NAME);
-        return getElementText(driver, SearchPageUI.THE_SECOND_OF_PRODUCT_NAME);
     }
 
     public void selectToCategoryDropdown(String category) {

@@ -31,14 +31,5 @@ public class ChangePasswordPageObject extends BaseAction {
         clickToElement(driver, ChangePasswordPageUI.CHANGE_PASSWORD_BUTTON);
     }
 
-    public String getChangePasswordSuccessMessage() {
-        waitForElementVisible(driver, ChangePasswordPageUI.CHANGE_PASSWORD_SUCCESS_MESSAGE);
-        return getElementText(driver, ChangePasswordPageUI.CHANGE_PASSWORD_SUCCESS_MESSAGE);
 
-    }
-
-    public void clickToCloseIcon() {
-        waitForElementClickable(driver, ChangePasswordPageUI.CLOSE_ICON);
-        clickToElement(driver, ChangePasswordPageUI.CLOSE_ICON);
-    }
 }

@@ -29,7 +29,7 @@ public class Nopcommerce_005_Sort_Display_Paging extends BaseTest {
     }
 
     @Test
-    public void TC_01_Sort_Name_Asc(Method method) {
+    public void Sort_Paging_01_Sort_Name_Asc(Method method) {
         ExtentTestManager.startTest(method.getName(), "TC_01_Sort_Name_Asc");
         ExtentTestManager.getTest().log(Status.INFO, "Step 01: Ascending Name (A-Z)");
         notebooksPage.selectItemSortDropdown("Name: A to Z", "products-orderby");
@@ -40,7 +40,7 @@ public class Nopcommerce_005_Sort_Display_Paging extends BaseTest {
     }
 
     @Test
-    public void TC_02_Sort_Name_Desc(Method method) {
+    public void Sort_Paging_02_Sort_Name_Desc(Method method) {
         ExtentTestManager.startTest(method.getName(), "TC_02_Sort_Name_Desc");
         ExtentTestManager.getTest().log(Status.INFO, "Step 01: Descending Name (Z-A)");
         notebooksPage.selectItemSortDropdown("Name: Z to A", "products-orderby");
@@ -51,7 +51,7 @@ public class Nopcommerce_005_Sort_Display_Paging extends BaseTest {
     }
 
     @Test
-    public void TC_03_Sort_Price_Desc(Method method) {
+    public void Sort_Paging_03_Sort_Price_Desc(Method method) {
         ExtentTestManager.startTest(method.getName(), "TC_03_Sort_Price_Desc");
         ExtentTestManager.getTest().log(Status.INFO, "Step 01: Descending Price (High to Low)");
         notebooksPage.selectItemSortDropdown("Price: High to Low", "products-orderby");
@@ -62,7 +62,7 @@ public class Nopcommerce_005_Sort_Display_Paging extends BaseTest {
     }
 
     @Test
-    public void TC_04_Sort_Price_Asc(Method method) {
+    public void Sort_Paging_04_Sort_Price_Asc(Method method) {
         ExtentTestManager.startTest(method.getName(), "TC_04_Sort_Price_Asc");
         ExtentTestManager.getTest().log(Status.INFO, "Step 01: Ascending Price (Low to High)");
         notebooksPage.selectItemSortDropdown("Price: Low to High", "products-orderby");
@@ -73,7 +73,7 @@ public class Nopcommerce_005_Sort_Display_Paging extends BaseTest {
     }
 
     @Test
-    public void TC_05_Display_3_Per_Page(Method method) {
+    public void Sort_Paging_05_Display_3_Per_Page(Method method) {
         ExtentTestManager.startTest(method.getName(), "TC_05_Display_3_Per_Page");
         ExtentTestManager.getTest().log(Status.INFO, "Step 01: Select display 3 per page dropdown");
         notebooksPage.selectItemSortDropdown("3", "products-pagesize");
@@ -93,7 +93,7 @@ public class Nopcommerce_005_Sort_Display_Paging extends BaseTest {
     }
 
     @Test
-    public void TC_06_Display_6_Per_Page(Method method) {
+    public void Sort_Paging_06_Display_6_Per_Page(Method method) {
         ExtentTestManager.startTest(method.getName(), "TC_06_Display_6_Per_Page");
         ExtentTestManager.getTest().log(Status.INFO, "Step 01: Select display 6 per page dropdown");
         notebooksPage.selectItemSortDropdown("6", "products-pagesize");
@@ -106,8 +106,8 @@ public class Nopcommerce_005_Sort_Display_Paging extends BaseTest {
         Assert.assertTrue(notebooksPage.isNextPagingIconUndisplayed());
     }
 
-    //@Test
-    public void TC_07_Display_9_Per_Page(Method method) {
+    @Test
+    public void Sort_Paging_07_Display_9_Per_Page(Method method) {
         ExtentTestManager.startTest(method.getName(), "TC_07_Display_9_Per_Page");
         ExtentTestManager.getTest().log(Status.INFO, "Step 01: Select display 9 per page dropdown");
         notebooksPage.selectItemSortDropdown("9", "products-pagesize");

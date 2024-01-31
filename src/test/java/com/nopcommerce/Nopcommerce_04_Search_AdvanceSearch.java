@@ -56,7 +56,7 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
         searchPage = homePage.clickToSearchLinkAtFooter();
     }
 
-    // @Test
+    @Test
     public void Search_01_Empty_Data(Method method) {
         ExtentTestManager.startTest(method.getName(), "Search_01_Empty_Data");
         ExtentTestManager.getTest().log(Status.INFO, "Search - Step 01: Click to Search button");
@@ -66,7 +66,7 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
         Assert.assertEquals(searchPage.getSearchErrorMessage(), "Search term minimum length is 3 characters");
     }
 
-    //@Test
+    @Test
     public void Search_02_Data_Not_Exist(Method method) {
         ExtentTestManager.startTest(method.getName(), "Search_02_Data_Not_Exist");
         ExtentTestManager.getTest().log(Status.INFO, "Search - Step 01: Input to Search Keyword with value is: " + "Macbook Pro 2050");
@@ -80,7 +80,7 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
 
     }
 
-    //@Test
+    @Test
     public void Search_03_Product_Name_Partial_Mapping(Method method) {
         ExtentTestManager.startTest(method.getName(), "Search_03_Comparative_Product_Name");
         ExtentTestManager.getTest().log(Status.INFO, "Search - Step 01: Input to Search Keyword with value is: " + "Lenovo");
@@ -93,14 +93,14 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
         Assert.assertEquals(searchPage.getNumberOfProduct(), 2);
 
         ExtentTestManager.getTest().log(Status.INFO, "Search - Step 04: Verify the first of product name  is display");
-        Assert.assertEquals(searchPage.getTheFirstOfProductNameDisplay(), "Lenovo IdeaCentre 600 All-in-One PC");
+        Assert.assertEquals(searchPage.getProductNameDisplayedAtTheNumber("1"), "Lenovo IdeaCentre 600 All-in-One PC");
 
         ExtentTestManager.getTest().log(Status.INFO, "Search - Step 05: Verify the second of product name  is display");
-        Assert.assertEquals(searchPage.getTheSecondOfProductNameDisplay(), "Lenovo Thinkpad X1 Carbon Laptop");
+        Assert.assertEquals(searchPage.getProductNameDisplayedAtTheNumber("2"), "Lenovo Thinkpad X1 Carbon Laptop");
 
     }
 
-    //@Test
+    @Test
     public void Search_04_Product_Name_Full_Mapping(Method method) {
         ExtentTestManager.startTest(method.getName(), "Search_04_Product_Name_Full_Mapping");
         ExtentTestManager.getTest().log(Status.INFO, "Search - Step 01: Input to Search Keyword with value is: " + "Thinkpad X1 Carbon");
@@ -116,7 +116,7 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
         Assert.assertEquals(searchPage.getNumberOfProduct(), 1);
 
         ExtentTestManager.getTest().log(Status.INFO, "Search - Step 05: Verify the first of product name  is display");
-        Assert.assertTrue(searchPage.getTheFirstOfProductNameDisplay().contains("Thinkpad X1 Carbon"));
+        Assert.assertTrue(searchPage.getProductNameDisplayedAtTheNumber("1").contains("Thinkpad X1 Carbon"));
     }
 
     @Test
@@ -163,7 +163,7 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
         Assert.assertEquals(searchPage.getNumberOfProduct(), 1);
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search - Step 07: Verify the first of product name  is display");
-        Assert.assertTrue(searchPage.getTheFirstOfProductNameDisplay().contains("Apple MacBook Pro 13-inch"));
+        Assert.assertTrue(searchPage.getProductNameDisplayedAtTheNumber("1").contains("Apple MacBook Pro 13-inch"));
     }
 
     @Test
@@ -216,7 +216,7 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
         Assert.assertEquals(searchPage.getNumberOfProduct(), 1);
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search - Step 08: Verify the first of product name  is display");
-        Assert.assertTrue(searchPage.getTheFirstOfProductNameDisplay().contains("Apple MacBook Pro 13-inch"));
+        Assert.assertTrue(searchPage.getProductNameDisplayedAtTheNumber("1").contains("Apple MacBook Pro 13-inch"));
     }
 
     @AfterClass(alwaysRun = true)

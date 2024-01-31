@@ -55,4 +55,24 @@ public class PageGeneratorManager {
     public static NotebooksPageObject getNotebooksPage(WebDriver driver) {
         return new NotebooksPageObject(driver);
     }
+
+    public static WishlishPageObject getWishlishPage(WebDriver driver) {
+        return new WishlishPageObject(driver);
+    }
+
+    public static ShoppingCartPageObject getShoppingCartPage(WebDriver driver) {
+        return new ShoppingCartPageObject(driver);
+    }
+
+    public static YourWishlistSharingPageObject getYourWishlistSharingPage(WebDriver driver) {
+        return new YourWishlistSharingPageObject(driver);
+    }
+
+    public static CompareProductsPageObject getCompareProductsPage(WebDriver driver) {
+        return new CompareProductsPageObject(driver);
+    }
+
+    public static RecentlyViewProductsPageObject getRecentlyViewProductsPage(WebDriver driver) {
+        return new RecentlyViewProductsPageObject(driver);
+    }
 }

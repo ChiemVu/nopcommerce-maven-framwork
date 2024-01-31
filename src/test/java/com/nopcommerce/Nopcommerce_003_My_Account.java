@@ -223,7 +223,7 @@ public class Nopcommerce_003_My_Account extends BaseTest {
         changePasswordPage.clickToChangePasswordButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 05: Verify Change Password success message displayed");
-        Assert.assertEquals(changePasswordPage.getChangePasswordSuccessMessage(), "Password was changed");
+        Assert.assertEquals(changePasswordPage.getMessageDisplayed(), "Password was changed");
 
         ExtentTestManager.getTest().log(Status.INFO, "Change Password - Step 06: Click To Close Icon");
         changePasswordPage.clickToCloseIcon();
@@ -275,7 +275,7 @@ public class Nopcommerce_003_My_Account extends BaseTest {
         searchPage = homePage.clickToSearchButtonAtHeader();
 
         ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 03: Get product name the of first in the list item");
-        productName = searchPage.getFristProductNameOfListSearchProduct();
+        productName = searchPage.getProductNameDisplayedAtTheNumber("1");
 
         ExtentTestManager.getTest().log(Status.INFO, "Product Reviews - Step 04: Click to first in list item");
         productDetailPage = searchPage.clickToFirstProductOfListSearchProduct();

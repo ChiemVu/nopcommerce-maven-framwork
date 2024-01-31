@@ -80,6 +80,10 @@ public class BasePage {
         return getListWebElement(driver, locatorType).size();
     }
 
+    public int getElementSize(WebDriver driver, String locator, String... dynamicValue) {
+        return getListWebElement(driver, getDynamicXpath(locator, dynamicValue)).size();
+    }
+
     public void clickToElement(WebDriver driver, String locatorType) {
         if (driver.toString().contains("internet explorer")) {
             clickToElementByJS(driver, locatorType);
@@ -130,9 +134,27 @@ public class BasePage {
                 .visibilityOfElementLocated(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
     }
 
+    public void waitForElementUndisplayed(WebDriver driver, String locatorType, String... dynamicValues) {
+        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIME));
+        explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
+    }
+
     public boolean isElementUndisplayed(WebDriver driver, String locator) {
         overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIME);
         List<WebElement> elements = getListWebElement(driver, locator);
+        overrideImplicitTimeout(driver, GlobalConstants.LONG_TIME);
+        if (elements.size() == 0) {
+            return true;
+        } else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isElementUndisplayed(WebDriver driver, String locator, String... dynamicValue) {
+        overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIME);
+        List<WebElement> elements = getListWebElement(driver, getDynamicXpath(locator, dynamicValue));
         overrideImplicitTimeout(driver, GlobalConstants.LONG_TIME);
         if (elements.size() == 0) {
             return true;
@@ -149,6 +171,13 @@ public class BasePage {
 
     public void checkToDefaultCheckboxOrRadio(WebDriver driver, String locatorType) {
         WebElement element = getWebElement(driver, locatorType);
+        if (!element.isSelected()) {
+            element.click();
+        }
+    }
+
+    public void checkToDefaultCheckboxOrRadio(WebDriver driver, String locatorType, String... dynamicValue) {
+        WebElement element = getWebElement(driver, getDynamicXpath(locatorType, dynamicValue));
         if (!element.isSelected()) {
             element.click();
         }
@@ -182,6 +211,14 @@ public class BasePage {
         }
     }
 
+    public boolean isElementDisplayed(WebDriver driver, String locator, String... dynamicValue) {
+        try {
+            return getWebElement(driver, getDynamicXpath(locator, dynamicValue)).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
     public boolean isElementSelected(WebDriver driver, String locatorType) {
         return getWebElement(driver, locatorType).isDisplayed();
     }
@@ -195,6 +232,11 @@ public class BasePage {
         jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, locatorType));
     }
 
+    public void scrollToElement(WebDriver driver, String locator, String... dynamicValue) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, getDynamicXpath(locator, dynamicValue)));
+    }
+
     public void uncheckToElement(WebDriver driver, String locator) {
         if (getWebElement(driver, locator).isSelected()) {
             getWebElement(driver, locator).click();
@@ -205,5 +247,9 @@ public class BasePage {
         return getWebElement(driver, getDynamicXpath(locator, dynamicValue)).isSelected();
     }
 
+    public void scrollToBottomPage(WebDriver driver) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+    }
 
 }

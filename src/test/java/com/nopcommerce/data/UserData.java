@@ -57,7 +57,7 @@ public class UserData {
     }
 
     public class ProductReview {
-        public static final String SEARCH_VALUE = "Apple";
+        public static final String SEARCH_VALUE = "HP Envy 6-1180ca 15.6-Inch Sleekbook";
         public static final String REVIEW_TITLE = "Review Title";
         public static final String REVIEW_TEXT = "Review Text.\nReview Text.";
         public static final String RATING = "Good";

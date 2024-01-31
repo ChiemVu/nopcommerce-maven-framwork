@@ -96,4 +96,59 @@ public class BaseAction extends BasePage {
     public long getNumberOfProduct() {
         return getElementSize(driver, BaseActionPageUI.NUMBER_PRODUCT);
     }
+
+    public String getMessageDisplayed() {
+        waitForElementVisible(driver, BaseActionPageUI.MESSAGE_DISPLAYED);
+        return getElementText(driver, BaseActionPageUI.MESSAGE_DISPLAYED);
+
+    }
+
+    public void clickToCloseIcon() {
+        waitForElementClickable(driver, BaseActionPageUI.CLOSE_ICON);
+        clickToElement(driver, BaseActionPageUI.CLOSE_ICON);
+    }
+
+    public WishlishPageObject clickToWishlistLink() {
+        waitForElementClickable(driver, BaseActionPageUI.WISHLIST_LINK);
+        clickToElement(driver, BaseActionPageUI.WISHLIST_LINK);
+        return PageGeneratorManager.getWishlishPage(driver);
+    }
+
+    public String getProductNameDisplayedAtTheNumber(String productNumber) {
+        waitForElementVisible(driver, BaseActionPageUI.DYNAMIC_PRODUCT_NAME_AT_THE_NUMBER, productNumber);
+        return getElementText(driver, BaseActionPageUI.DYNAMIC_PRODUCT_NAME_AT_THE_NUMBER, productNumber);
+    }
+
+    public String getPriceProductNameDisplayedAtTheNumber(String productName) {
+        waitForElementVisible(driver, BaseActionPageUI.DYNAMIC_PRICE_AT_PRODUCT_NAME, productName);
+        return getElementText(driver, BaseActionPageUI.DYNAMIC_PRICE_AT_PRODUCT_NAME, productName);
+    }
+
+    public void clickAddToCompareListIconByProductName(String productName) {
+        waitForElementClickable(driver, BaseActionPageUI.DYNAMIC_ADD_TO_COMPARE_LIST_AT_PRODUCT_NAME, productName);
+        clickToElement(driver, BaseActionPageUI.DYNAMIC_ADD_TO_COMPARE_LIST_AT_PRODUCT_NAME, productName);
+    }
+
+    public CompareProductsPageObject clickToProductComparisonLink() {
+        waitForElementClickable(driver, BaseActionPageUI.PRODUCT_COMPARISON_LINK);
+        clickToElement(driver, BaseActionPageUI.PRODUCT_COMPARISON_LINK);
+        return PageGeneratorManager.getCompareProductsPage(driver);
+    }
+
+    public ProductDetailPageObject openProductDetailPageAtPosition(String productNumber) {
+        waitForElementClickable(driver, BaseActionPageUI.DYNAMIC_PRODUCT_NAME_AT_THE_NUMBER, productNumber);
+        clickToElement(driver, BaseActionPageUI.DYNAMIC_PRODUCT_NAME_AT_THE_NUMBER, productNumber);
+        return PageGeneratorManager.getProductDetailPage(driver);
+    }
+
+    public NotebooksPageObject openNotebooksPageUrl(String notebooksPageUrl) {
+        openPageUrl(driver, notebooksPageUrl);
+        return PageGeneratorManager.getNotebooksPage(driver);
+    }
+
+    public RecentlyViewProductsPageObject openRecentlyViewProductPage() {
+        waitForElementClickable(driver, BaseActionPageUI.RECENTLY_VIEWED_PRODUCT_FOOTER_MENU);
+        clickToElement(driver, BaseActionPageUI.RECENTLY_VIEWED_PRODUCT_FOOTER_MENU);
+        return PageGeneratorManager.getRecentlyViewProductsPage(driver);
+    }
 }
