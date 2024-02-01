@@ -63,4 +63,16 @@ public class UserData {
         public static final String RATING = "Good";
     }
 
+    public class Order {
+        public static final String SEARCH_VALUE = "Build your own computer";
+        public static final String PRODUCT_PROCESSOR = "2.2 GHz Intel Pentium Dual-Core E2200";
+        public static final String PRODUCT_RAM = "8GB [+$60.00]";
+        public static final String PRODUCT_HDD = "400 GB [+$100.00]";
+        public static final String PRODUCT_OS = "Vista Premium [+$60.00]";
+        public static final String PRODUCT_SOFTWARE_MICROSOFT_OFFICE = "Microsoft Office [+$50.00]";
+        public static final String PRODUCT_SOFTWARE_ACROBAT_READER = "Acrobat Reader [+$10.00]";
+        public static final String PRODUCT_SOFTWARE_TOTAL_COMMANDER = "Total Commander [+$5.00]";
+
+    }
+
 }

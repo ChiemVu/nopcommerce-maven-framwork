@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import pageUIs.BaseActionPageUI;
 import pageUIs.HomePageUI;
 import pageUIs.SearchPageUI;
+import pageUIs.YourWishlistSharingPageUI;
 
 public class BaseAction extends BasePage {
     WebDriver driver;
@@ -151,5 +152,26 @@ public class BaseAction extends BasePage {
         waitForElementClickable(driver, BaseActionPageUI.RECENTLY_VIEWED_PRODUCT_FOOTER_MENU);
         clickToElement(driver, BaseActionPageUI.RECENTLY_VIEWED_PRODUCT_FOOTER_MENU);
         return PageGeneratorManager.getRecentlyViewProductsPage(driver);
+    }
+
+    public ShoppingCartPageObject clickToAddToCartButton() {
+        waitForElementClickable(driver, BaseActionPageUI.ADD_TO_CART_BUTTON);
+        clickToElement(driver, BaseActionPageUI.ADD_TO_CART_BUTTON);
+        return PageGeneratorManager.getShoppingCartPage(driver);
+    }
+
+    public ShoppingCartPageObject clickToShoppingCartLink() {
+        waitForElementClickable(driver, BaseActionPageUI.SHOPPING_CART_LINK);
+        clickToElement(driver, BaseActionPageUI.SHOPPING_CART_LINK);
+        return PageGeneratorManager.getShoppingCartPage(driver);
+    }
+
+
+    public void hoverMouserToShoppingCartHeaderUpperLink() {
+        hoverMouserToElement(driver, BaseActionPageUI.SHOPPING_CART_LINK);
+    }
+
+    public void scrollToElementShoppingCartMenuLink() {
+        scrollToElement(driver, BaseActionPageUI.SHOPPING_CART_LINK);
     }
 }

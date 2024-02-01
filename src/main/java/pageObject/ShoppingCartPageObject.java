@@ -2,6 +2,7 @@ package pageObject;
 
 import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
+import pageUIs.ProductDetailPageUI;
 import pageUIs.ShoppingCartPageUI;
 
 public class ShoppingCartPageObject extends BaseAction {
@@ -21,5 +22,11 @@ public class ShoppingCartPageObject extends BaseAction {
     public WishlishPageObject openWishlistPageUrl(String wishlistPageUrl) {
         openPageUrl(driver, wishlistPageUrl);
         return PageGeneratorManager.getWishlishPage(driver);
+    }
+
+    public ProductDetailPageObject clickToEditLink() {
+        waitForElementVisible(driver, ShoppingCartPageUI.EDIT_BUTTON);
+        clickToElement(driver, ShoppingCartPageUI.EDIT_BUTTON);
+        return PageGeneratorManager.getProductDetailPage(driver);
     }
 }

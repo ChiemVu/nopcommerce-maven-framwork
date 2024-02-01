@@ -7,6 +7,7 @@ public class BaseActionPageUI {
     public static final String LOGOUT_LINK = "xpath=//a[@class='ico-logout']";
     public static final String LOGIN_LINK = "xpath=//a[@class='ico-login']";
     public static final String WISHLIST_LINK = "xpath=//a[@class='ico-wishlist']";
+    public static final String SHOPPING_CART_LINK = "xpath=//a[@class='ico-cart']";
     public static final String SEARCH_TEXTBOX = "xpath=//input[@id='small-searchterms']";
     public static final String SEARCH_BUTTON_AT_HEADER = "css=button.search-box-button";
     public static final String SEARCH_LINK_AT_FOOTER = "xpath=//a[text()='Search']";
@@ -24,4 +25,6 @@ public class BaseActionPageUI {
     public static final String DYNAMIC_PRICE_AT_PRODUCT_NAME = "xpath=//a[text()='%s']/parent::h2/parent::div//div[@class='prices']";
     public static final String DYNAMIC_ADD_TO_COMPARE_LIST_AT_PRODUCT_NAME = "xpath=//a[text()='%s']/parent::h2/parent::div//button[@title='Add to compare list']";
     public static final String PRODUCT_COMPARISON_LINK = "xpath=//a[text()='product comparison']";
+
+    public static final String ADD_TO_CART_BUTTON = "xpath=//button[text()='Add to cart']";
 }

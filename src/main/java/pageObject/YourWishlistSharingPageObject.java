@@ -22,10 +22,4 @@ public class YourWishlistSharingPageObject extends BaseAction {
         waitForElementClickable(driver, YourWishlistSharingPageUI.ADD_TO_CART_CHECKBOX);
         checkToDefaultCheckboxOrRadio(driver, YourWishlistSharingPageUI.ADD_TO_CART_CHECKBOX);
     }
-
-    public ShoppingCartPageObject clickToAddToCartButton() {
-        waitForElementClickable(driver, YourWishlistSharingPageUI.ADD_TO_CART_BUTTON);
-        clickToElement(driver, YourWishlistSharingPageUI.ADD_TO_CART_BUTTON);
-        return PageGeneratorManager.getShoppingCartPage(driver);
-    }
 }

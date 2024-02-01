@@ -72,11 +72,6 @@ public class Nopcommerce_006_Wishlist_Compare_Recent_View extends BaseTest {
         ExtentTestManager.getTest().log(Status.INFO, "Step 04: Click to close icon");
         productDetailPage.clickToCloseIcon();
 
-        ExtentTestManager.getTest().log(Status.INFO, "Step 05: Scroll to top page");
-        productDetailPage.scrollToTopPage();
-        productDetailPage.sleepInSecond(1);
-
-
         ExtentTestManager.getTest().log(Status.INFO, "Step 06: Click to header upper 'Wishlish' link");
         wishlishPage = productDetailPage.clickToWishlistLink();
 
