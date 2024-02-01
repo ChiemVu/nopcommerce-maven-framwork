@@ -119,6 +119,7 @@ public class BaseAction extends BasePage {
         return getElementText(driver, BaseActionPageUI.DYNAMIC_PRODUCT_NAME_AT_THE_NUMBER, productNumber);
     }
 
+
     public String getPriceProductNameDisplayedAtTheNumber(String productName) {
         waitForElementVisible(driver, BaseActionPageUI.DYNAMIC_PRICE_AT_PRODUCT_NAME, productName);
         return getElementText(driver, BaseActionPageUI.DYNAMIC_PRICE_AT_PRODUCT_NAME, productName);

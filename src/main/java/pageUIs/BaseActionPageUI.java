@@ -14,6 +14,7 @@ public class BaseActionPageUI {
     public static final String DYNAMIC_CHECKBOX_BY_LABEL_NAME = "xpath=//label[text()='%s']/preceding-sibling::input";
     public static final String COMPUTER_HEADER_MENU = "xpath=//div[@class='header-menu']/ul[contains(@class,'notmobile')]//a[contains(string(),'Computers')]";
     public static final String NAVIGATION_NOTEBOOKS_SUBMENU = "xpath=//div[contains(@class,'block-category-navigation')]//a[text()='Notebooks ']";
+    public static final String NAVIGATION_DESKTOPS_SUBMENU = "xpath=//div[contains(@class,'block-category-navigation')]//a[text()='Desktops ']";
     public static final String RECENTLY_VIEWED_PRODUCT_FOOTER_MENU = "xpath=//div[@class='footer']//a[text()='Recently viewed products']";
 
     public static final String MESSAGE_DISPLAYED = "xpath=//p[@class='content']";

@@ -18,7 +18,6 @@ import java.lang.reflect.Method;
 public class Nopcommerce_006_Wishlist_Compare_Recent_View extends BaseTest {
     private WebDriver driver;
     private String emailAddress, wishlistPageUrl, productName1, priceProductName1, productName2, priceProductName2, notebooksPageUrl;
-    private String productName3, productName4, productName5;
 
 
     @Parameters({"browser", "url"})
@@ -126,9 +125,7 @@ public class Nopcommerce_006_Wishlist_Compare_Recent_View extends BaseTest {
         Assert.assertEquals(wishlishPage.getEmptyDataMessageDisplay(), "The wishlist is empty!");
 
         ExtentTestManager.getTest().log(Status.INFO, "Step 04: Vefiry product name undisplay at Wishlist page");
-        //Assert.assertTrue(wishlishPage.isProductNameUndisplay("Product(s)"));
-
-
+        Assert.assertTrue(wishlishPage.isProductNameUndisplay("Product(s)"));
     }
 
     @Test
@@ -186,8 +183,8 @@ public class Nopcommerce_006_Wishlist_Compare_Recent_View extends BaseTest {
         Assert.assertEquals(compareProductsPage.getNoItemMessageDisplayed(), "You have no items to compare.");
 
         ExtentTestManager.getTest().log(Status.INFO, "Step 16: verify product information undisplayed ");
-        //Assert.assertTrue(compareProductsPage.isProductInformationUndisplay(productName1));
-        //Assert.assertTrue(compareProductsPage.isProductInformationUndisplay(productName2));
+        Assert.assertTrue(compareProductsPage.isProductInformationUndisplay(productName1));
+        Assert.assertTrue(compareProductsPage.isProductInformationUndisplay(productName2));
     }
 
     @Test
@@ -202,67 +199,103 @@ public class Nopcommerce_006_Wishlist_Compare_Recent_View extends BaseTest {
 
         ExtentTestManager.getTest().log(Status.INFO, "Step 03: Open product detail page ");
         productDetailPage = notebooksPage.openProductDetailPageAtPosition("1");
-        productDetailPage.sleepInSecond(1);
+        productDetailPage.sleepInSecond(3);
 
         ExtentTestManager.getTest().log(Status.INFO, "Step 04: Get Product Name at Product detail page ");
         productName1 = productDetailPage.getProductNameText();
 
-        ExtentTestManager.getTest().log(Status.INFO, "Step 05: Open Notebooks Page");
-        notebooksPage = productDetailPage.openNotebooksPageUrl(notebooksPageUrl);
+        ExtentTestManager.getTest().log(Status.INFO, "Step 05: Open recently view product page ");
+        recentlyViewProductsPage = productDetailPage.openRecentlyViewProductPage();
+        recentlyViewProductsPage.sleepInSecond(3);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Step 06: Open product detail page ");
+        ExtentTestManager.getTest().log(Status.INFO, "Step 06: Verify product name view lastest display at recently view product page ");
+        Assert.assertEquals(recentlyViewProductsPage.getProductNameDisplayed(), productName1);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Step 07: Verify <=3 product name view lastest display at recently view product page ");
+        Assert.assertTrue(recentlyViewProductsPage.checkNumberProductDisplayAtRecentlyViewProductPage());
+
+        ExtentTestManager.getTest().log(Status.INFO, "Step 08: Open Notebooks Page");
+        notebooksPage = recentlyViewProductsPage.openNotebooksPageUrl(notebooksPageUrl);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Step 09: Open product detail page ");
         productDetailPage = notebooksPage.openProductDetailPageAtPosition("2");
         productDetailPage.sleepInSecond(1);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Step 07: Get Product Name at Product detail page ");
-        productName2 = productDetailPage.getProductNameText();
-
-        ExtentTestManager.getTest().log(Status.INFO, "Step 08: Open Notebooks Page");
-        notebooksPage = productDetailPage.openNotebooksPageUrl(notebooksPageUrl);
-
-        ExtentTestManager.getTest().log(Status.INFO, "Step 09: Open product detail page ");
-        productDetailPage = notebooksPage.openProductDetailPageAtPosition("3");
-        productDetailPage.sleepInSecond(1);
-
         ExtentTestManager.getTest().log(Status.INFO, "Step 10: Get Product Name at Product detail page ");
-        productName3 = productDetailPage.getProductNameText();
+        productName1 = productDetailPage.getProductNameText();
 
-        ExtentTestManager.getTest().log(Status.INFO, "Step 11: Open Notebooks Page");
-        notebooksPage = productDetailPage.openNotebooksPageUrl(notebooksPageUrl);
+        ExtentTestManager.getTest().log(Status.INFO, "Step 11: Open recently view product page ");
+        recentlyViewProductsPage = productDetailPage.openRecentlyViewProductPage();
+        recentlyViewProductsPage.sleepInSecond(3);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Step 12: Open product detail page ");
-        productDetailPage = notebooksPage.openProductDetailPageAtPosition("4");
-        productDetailPage.sleepInSecond(1);
+        ExtentTestManager.getTest().log(Status.INFO, "Step 12: Verify product name view lastest display at recently view product page ");
+        Assert.assertEquals(recentlyViewProductsPage.getProductNameDisplayed(), productName1);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Step 13: Get Product Name at Product detail page ");
-        productName4 = productDetailPage.getProductNameText();
+        ExtentTestManager.getTest().log(Status.INFO, "Step 13: Verify <=3 product name view lastest display at recently view product page ");
+        Assert.assertTrue(recentlyViewProductsPage.checkNumberProductDisplayAtRecentlyViewProductPage());
 
         ExtentTestManager.getTest().log(Status.INFO, "Step 14: Open Notebooks Page");
-        notebooksPage = productDetailPage.openNotebooksPageUrl(notebooksPageUrl);
+        notebooksPage = recentlyViewProductsPage.openNotebooksPageUrl(notebooksPageUrl);
 
         ExtentTestManager.getTest().log(Status.INFO, "Step 15: Open product detail page ");
-        productDetailPage = notebooksPage.openProductDetailPageAtPosition("5");
+        productDetailPage = notebooksPage.openProductDetailPageAtPosition("6");
         productDetailPage.sleepInSecond(1);
 
         ExtentTestManager.getTest().log(Status.INFO, "Step 16: Get Product Name at Product detail page ");
-        productName5 = productDetailPage.getProductNameText();
+        productName1 = productDetailPage.getProductNameText();
 
         ExtentTestManager.getTest().log(Status.INFO, "Step 17: Open recently view product page ");
         recentlyViewProductsPage = productDetailPage.openRecentlyViewProductPage();
+        recentlyViewProductsPage.sleepInSecond(3);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Step 18: Verify product number display ");
-        Assert.assertEquals(recentlyViewProductsPage.getNumberOfProduct(), 3);
+        ExtentTestManager.getTest().log(Status.INFO, "Step 18: Verify product name view lastest display at recently view product page ");
+        Assert.assertTrue(recentlyViewProductsPage.getProductNameDisplayed().contains(productName1));
 
-        ExtentTestManager.getTest().log(Status.INFO, "Step 19: Verify 3 product name view lastest display ");
-        Assert.assertEquals(recentlyViewProductsPage.getProductNameDisplayedAtTheNumber("1"), productName5);
+        ExtentTestManager.getTest().log(Status.INFO, "Step 19: Verify <=3 product name view lastest display at recently view product page ");
+        Assert.assertTrue(recentlyViewProductsPage.checkNumberProductDisplayAtRecentlyViewProductPage());
 
-        ExtentTestManager.getTest().log(Status.INFO, "Step 20: Verify 3 product name view lastest display ");
-        Assert.assertEquals(recentlyViewProductsPage.getProductNameDisplayedAtTheNumber("2"), productName4);
+        ExtentTestManager.getTest().log(Status.INFO, "Step 20: Open Notebooks Page");
+        notebooksPage = recentlyViewProductsPage.openNotebooksPageUrl(notebooksPageUrl);
 
+        ExtentTestManager.getTest().log(Status.INFO, "Step 21: Open product detail page ");
+        productDetailPage = notebooksPage.openProductDetailPageAtPosition("4");
+        productDetailPage.sleepInSecond(1);
 
-        ExtentTestManager.getTest().log(Status.INFO, "Step 21: Verify 3 product name view lastest display ");
-        Assert.assertEquals(recentlyViewProductsPage.getProductNameDisplayedAtTheNumber("3"), productName3);
+        ExtentTestManager.getTest().log(Status.INFO, "Step 22: Get Product Name at Product detail page ");
+        productName1 = productDetailPage.getProductNameText();
 
+        ExtentTestManager.getTest().log(Status.INFO, "Step 23: Open recently view product page ");
+        recentlyViewProductsPage = productDetailPage.openRecentlyViewProductPage();
+        recentlyViewProductsPage.sleepInSecond(3);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Step 24: Verify product name view lastest display at recently view product page ");
+        Assert.assertTrue(recentlyViewProductsPage.getProductNameDisplayed().contains(productName1));
+
+        ExtentTestManager.getTest().log(Status.INFO, "Step 25: Verify <=3 product name view lastest display at recently view product page ");
+        Assert.assertTrue(recentlyViewProductsPage.checkNumberProductDisplayAtRecentlyViewProductPage());
+
+        ExtentTestManager.getTest().log(Status.INFO, "Step 26: Open Notebooks Page");
+        notebooksPage = recentlyViewProductsPage.openNotebooksPageUrl(notebooksPageUrl);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Step 27: Open product detail page ");
+        productDetailPage = notebooksPage.openProductDetailPageAtPosition("5");
+        productDetailPage.sleepInSecond(1);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Step 28: Get Product Name at Product detail page ");
+        productName1 = productDetailPage.getProductNameText();
+
+        ExtentTestManager.getTest().log(Status.INFO, "Step 29: Open recently view product page ");
+        recentlyViewProductsPage = productDetailPage.openRecentlyViewProductPage();
+        recentlyViewProductsPage.sleepInSecond(3);
+
+        ExtentTestManager.getTest().log(Status.INFO, "Step 24: Verify product name view lastest display at recently view product page ");
+        Assert.assertTrue(recentlyViewProductsPage.getProductNameDisplayed().contains(productName1));
+
+        ExtentTestManager.getTest().log(Status.INFO, "Step 31: Verify <=3 product name view lastest display at recently view product page ");
+        Assert.assertTrue(recentlyViewProductsPage.checkNumberProductDisplayAtRecentlyViewProductPage());
+
+        ExtentTestManager.getTest().log(Status.INFO, "Step 32: Open Notebooks Page");
+        notebooksPage = recentlyViewProductsPage.openNotebooksPageUrl(notebooksPageUrl);
     }
 
     @AfterClass(alwaysRun = true)
