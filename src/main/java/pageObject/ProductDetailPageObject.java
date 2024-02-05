@@ -1,5 +1,6 @@
 package pageObject;
 
+import commons.GlobalConstants;
 import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 import pageUIs.ProductDetailPageUI;
@@ -33,9 +34,9 @@ public class ProductDetailPageObject extends BaseAction {
         return getElementText(driver, ProductDetailPageUI.PRODUCT_NAME);
     }
 
-    public String getProductInformation() {
-        waitForElementVisible(driver, ProductDetailPageUI.PRODUCT_INFORMATION_IS_SELECTED);
-        return getElementText(driver, ProductDetailPageUI.PRODUCT_INFORMATION_IS_SELECTED);
+    public boolean isProductInformationDisplayed(String className, String infomationValue) {
+        waitForElementVisible(driver, ProductDetailPageUI.MINI_SHOPPING_CART_DYNAMIC_PRODUCT_INFORMATION_BY_CLASS_AND_INFORMATION_VALUE, className, infomationValue);
+        return isElementDisplayed(driver, ProductDetailPageUI.MINI_SHOPPING_CART_DYNAMIC_PRODUCT_INFORMATION_BY_CLASS_AND_INFORMATION_VALUE, className, infomationValue);
     }
 
     public void selectDropdownByLabelName(String labelName, String dropdownValue) {
@@ -43,18 +44,41 @@ public class ProductDetailPageObject extends BaseAction {
         selectItemInDefaultDropdown(driver, ProductDetailPageUI.DYNAMIC_PRODUCT_DROPDOWN, dropdownValue, labelName);
     }
 
-    public void checkToCheckboxAndRadioButtonByLabelName(String labelName, String checkboxAndRadioValue) {
-        waitForElementClickable(driver, ProductDetailPageUI.DYNAMIC_PRODUCT_CHECKBOX_RADIO_BUTTON, labelName, checkboxAndRadioValue);
-        checkToDefaultCheckboxOrRadio(driver, ProductDetailPageUI.DYNAMIC_PRODUCT_CHECKBOX_RADIO_BUTTON, labelName, checkboxAndRadioValue);
-    }
-
-    public String getProductPrice() {
-        waitForElementVisible(driver, ProductDetailPageUI.PRODUCT_PRICE);
-        return getElementText(driver, ProductDetailPageUI.PRODUCT_PRICE);
+    public Float getProductPrice(Float productNumber) {
+        waitForElementVisible(driver, ProductDetailPageUI.UNIT_PRODUCT_PRICE);
+        String productPriceText = getElementText(driver, ProductDetailPageUI.UNIT_PRODUCT_PRICE);
+        Float productPrice = Float.parseFloat(productPriceText.replace("$", "").replace(",", ""));
+        productPrice = productPrice * productNumber;
+        return productPrice;
     }
 
     public String getMessageDisplay() {
-        waitForElementVisible(driver, ProductDetailPageUI.PRODUCT_ITEM_IN_YOUR_CART_MESSAGE);
-        return getElementText(driver, ProductDetailPageUI.PRODUCT_ITEM_IN_YOUR_CART_MESSAGE);
+        waitForElementVisible(driver, ProductDetailPageUI.MINI_SHOPPING_CART_PRODUCT_ITEM_IN_YOUR_CART_MESSAGE);
+        return getElementText(driver, ProductDetailPageUI.MINI_SHOPPING_CART_PRODUCT_ITEM_IN_YOUR_CART_MESSAGE);
+    }
+    
+    public void inputToQuantityTextbox(String quantityValue) {
+        waitForElementVisible(driver, ProductDetailPageUI.PRODUCT_QUANTITY_TEXTBOX);
+        sendKeyToElement(driver, ProductDetailPageUI.PRODUCT_QUANTITY_TEXTBOX, quantityValue);
+    }
+
+    public void clickToUpdateButton() {
+        waitForElementClickable(driver, ProductDetailPageUI.PRODUCT_UPDATE_BUTTON);
+        clickToElement(driver, ProductDetailPageUI.PRODUCT_UPDATE_BUTTON);
+    }
+
+    public Float getProductSubTotal() {
+        waitForElementVisible(driver, ProductDetailPageUI.MINI_SHOPPING_CART_PRODUCT_SUB_TOTAL);
+        return Float.parseFloat(getElementText(driver, ProductDetailPageUI.MINI_SHOPPING_CART_PRODUCT_SUB_TOTAL).replace("$", "").replace(",", ""));
+    }
+
+    public String getUnitProductPrice() {
+        waitForElementVisible(driver, ProductDetailPageUI.UNIT_PRODUCT_PRICE);
+        return getElementText(driver, ProductDetailPageUI.UNIT_PRODUCT_PRICE);
+    }
+
+    public boolean isProductSoftwarreUndisplayed(String softwareName, String informationValue) {
+        overrideImplicitTimeout(driver, GlobalConstants.LONG_TIME);
+        return isElementUndisplayed(driver, ProductDetailPageUI.MINI_SHOPPING_CART_DYNAMIC_PRODUCT_INFORMATION_BY_CLASS_AND_INFORMATION_VALUE, softwareName, informationValue);
     }
 }

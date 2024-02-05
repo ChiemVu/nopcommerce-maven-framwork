@@ -13,12 +13,6 @@ public class WishlishPageObject extends BaseAction {
         this.driver = driver;
     }
 
-    public boolean isWishlistTableDisplayed(String headerName, String rowValue) {
-        int headerIndex = getElementSize(driver, WishlishPageUI.TABLE_HEADER_INDEX_BY_HEADER_NAME, headerName) + 1;
-        waitForElementVisible(driver, WishlishPageUI.TABLE_ROW_VALUE_BY_HEADER_INDEX, String.valueOf(headerIndex), rowValue);
-        return isElementDisplayed(driver, WishlishPageUI.TABLE_ROW_VALUE_BY_HEADER_INDEX, String.valueOf(headerIndex), rowValue);
-    }
-
     public YourWishlistSharingPageObject clickToYourWishlistUrlSharingLink() {
         waitForElementClickable(driver, WishlishPageUI.YOUR_WISHLIST_URL_FOR_SHARING_LINK);
         clickToElement(driver, WishlishPageUI.YOUR_WISHLIST_URL_FOR_SHARING_LINK);
@@ -33,11 +27,5 @@ public class WishlishPageObject extends BaseAction {
     public void clickToRemoveIcon() {
         waitForElementClickable(driver, WishlishPageUI.REMOVE_ICON_BY_ROW_NUMBER);
         clickToElement(driver, WishlishPageUI.REMOVE_ICON_BY_ROW_NUMBER);
-    }
-
-    public boolean isProductNameUndisplay(String headerName) {
-        int headerIndex = getElementSize(driver, WishlishPageUI.TABLE_HEADER_INDEX_BY_HEADER_NAME, headerName) + 1;
-        waitForElementUndisplayed(driver, WishlishPageUI.TABLE_ROW_VALUE_BY_HEADER_INDEX, String.valueOf(headerIndex));
-        return isElementUndisplayed(driver, WishlishPageUI.TABLE_ROW_VALUE_BY_HEADER_INDEX, String.valueOf(headerIndex));
     }
 }

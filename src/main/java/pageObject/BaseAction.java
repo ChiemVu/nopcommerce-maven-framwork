@@ -5,8 +5,7 @@ import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 import pageUIs.BaseActionPageUI;
 import pageUIs.HomePageUI;
-import pageUIs.SearchPageUI;
-import pageUIs.YourWishlistSharingPageUI;
+import pageUIs.WishlishPageUI;
 
 public class BaseAction extends BasePage {
     WebDriver driver;
@@ -70,16 +69,12 @@ public class BaseAction extends BasePage {
         return PageGeneratorManager.getSearchPage(driver);
     }
 
-    public void checkToCheckboxByLabelName(String checkboxLabelName) {
-        if (!isElementSelected(driver, BaseActionPageUI.DYNAMIC_CHECKBOX_BY_LABEL_NAME, checkboxLabelName)) {
-            clickToElement(driver, BaseActionPageUI.DYNAMIC_CHECKBOX_BY_LABEL_NAME, checkboxLabelName);
-        }
+    public void checkToCheckboxOrRadionButtonByLabelName(String labelName) {
+        checkToDefaultCheckboxOrRadio(driver, BaseActionPageUI.DYNAMIC_CHECKBOX_OR_RADIO_BUTTON_BY_LABEL_NAME, labelName);
     }
 
     public void uncheckToCheckboxByLabelName(String checkboxLabelName) {
-        if (isElementSelected(driver, BaseActionPageUI.DYNAMIC_CHECKBOX_BY_LABEL_NAME, checkboxLabelName)) {
-            clickToElement(driver, BaseActionPageUI.DYNAMIC_CHECKBOX_BY_LABEL_NAME, checkboxLabelName);
-        }
+        uncheckToElement(driver, BaseActionPageUI.DYNAMIC_CHECKBOX_OR_RADIO_BUTTON_BY_LABEL_NAME, checkboxLabelName);
     }
 
     public ComputersPageObject clickToComputerHeaderMenu() {
@@ -171,7 +166,19 @@ public class BaseAction extends BasePage {
         hoverMouserToElement(driver, BaseActionPageUI.SHOPPING_CART_LINK);
     }
 
-    public void scrollToElementShoppingCartMenuLink() {
-        scrollToElement(driver, BaseActionPageUI.SHOPPING_CART_LINK);
+    public void scrollToHeaderUpperMenuLink(String className) {
+        scrollToElement(driver, BaseActionPageUI.DYNAMIC_HEADER_UPPER_MENU_LINK_BY_CLASS, className);
+    }
+
+    public boolean isRowValueDisplayedAtCart(String headerName, String rowValue) {
+        int headerIndex = getElementSize(driver, BaseActionPageUI.DYNAMIC_TABLE_HEADER_INDEX_BY_HEADER_NAME, headerName) + 1;
+        waitForElementVisible(driver, BaseActionPageUI.DYNAMIC_TABLE_ROW_VALUE_BY_HEADER_INDEX, String.valueOf(headerIndex), rowValue);
+        return isElementDisplayed(driver, BaseActionPageUI.DYNAMIC_TABLE_ROW_VALUE_BY_HEADER_INDEX, String.valueOf(headerIndex), rowValue);
+    }
+
+    public boolean isRowValueUndisplayAtCart(String headerName, String rowValue) {
+        int headerIndex = getElementSize(driver, WishlishPageUI.TABLE_HEADER_INDEX_BY_HEADER_NAME, headerName) + 1;
+        waitForElementUndisplayed(driver, WishlishPageUI.TABLE_ROW_VALUE_BY_HEADER_INDEX, String.valueOf(headerIndex), rowValue);
+        return isElementUndisplayed(driver, WishlishPageUI.TABLE_ROW_VALUE_BY_HEADER_INDEX, String.valueOf(headerIndex), rowValue);
     }
 }

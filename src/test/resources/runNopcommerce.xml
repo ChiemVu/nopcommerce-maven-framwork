@@ -11,7 +11,7 @@
         <parameter name="browser" value="firefox"/>
 
         <classes>
-            <class name="com.nopcommerce.Nopcommerce_007_Order"/>
+            <class name="com.nopcommerce.Nopcommerce_006_Wishlist_Compare_Recent_View"/>
         </classes>
     </test>
 

@@ -126,7 +126,7 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
         searchPage.inputToSearchKeyword(searchKeyword);
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search- Step 02: Check to 'Advanced Search' checkbox");
-        searchPage.checkToCheckboxByLabelName("Advanced search");
+        searchPage.checkToCheckboxOrRadionButtonByLabelName("Advanced search");
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search- Step 03: Select to Category dropdown with value is: " + category);
         searchPage.selectToCategoryDropdown(category);
@@ -148,13 +148,13 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
         searchPage.inputToSearchKeyword(searchKeyword);
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search- Step 02: Check to 'Advanced Search' checkbox");
-        searchPage.checkToCheckboxByLabelName("Advanced search");
+        searchPage.checkToCheckboxOrRadionButtonByLabelName("Advanced search");
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search- Step 03: Select to Category dropdown with value is: " + category);
         searchPage.selectToCategoryDropdown(category);
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search- Step 04: Check to Automation Search Sub Categories Checkbox");
-        searchPage.checkToCheckboxByLabelName("Automatically search sub categories");
+        searchPage.checkToCheckboxOrRadionButtonByLabelName("Automatically search sub categories");
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search - Step 05: Click to Search button");
         searchPage.clickToSearchButtonAtSearchPage();
@@ -173,13 +173,13 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
         searchPage.inputToSearchKeyword(searchKeyword);
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search- Step 02: Check to 'Advanced Search' checkbox");
-        searchPage.checkToCheckboxByLabelName("Advanced search");
+        searchPage.checkToCheckboxOrRadionButtonByLabelName("Advanced search");
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search- Step 03: Select to Category dropdown with value is: " + category);
         searchPage.selectToCategoryDropdown(category);
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search- Step 04: Check to Automation Search Sub Categories Checkbox");
-        searchPage.checkToCheckboxByLabelName("Automatically search sub categories");
+        searchPage.checkToCheckboxOrRadionButtonByLabelName("Automatically search sub categories");
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search- Step 05: Select to Manufacturer dropdown with value is: " + "HP");
         searchPage.selectToManufacturerDropdown("HP");
@@ -198,13 +198,13 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
         searchPage.inputToSearchKeyword(searchKeyword);
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search- Step 02: Check to 'Advanced Search' checkbox");
-        searchPage.checkToCheckboxByLabelName("Advanced search");
+        searchPage.checkToCheckboxOrRadionButtonByLabelName("Advanced search");
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search- Step 03: Select to Category dropdown with value is: " + category);
         searchPage.selectToCategoryDropdown(category);
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search- Step 04: Check to Automation Search Sub Categories Checkbox");
-        searchPage.checkToCheckboxByLabelName("Automatically search sub categories");
+        searchPage.checkToCheckboxOrRadionButtonByLabelName("Automatically search sub categories");
 
         ExtentTestManager.getTest().log(Status.INFO, "Advanced_Search- Step 05: Select to Manufacturer dropdown with value is: " + "Apple");
         searchPage.selectToManufacturerDropdown("Apple");

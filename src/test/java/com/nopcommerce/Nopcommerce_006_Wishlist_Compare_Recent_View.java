@@ -72,23 +72,27 @@ public class Nopcommerce_006_Wishlist_Compare_Recent_View extends BaseTest {
         ExtentTestManager.getTest().log(Status.INFO, "Step 04: Click to close icon");
         productDetailPage.clickToCloseIcon();
 
+        ExtentTestManager.getTest().log(Status.INFO, "Step 05: Scroll to Wishlish header menu link ");
+        productDetailPage.scrollToHeaderUpperMenuLink("ico-wishlist");
+        productDetailPage.sleepInSecond(2);
+
         ExtentTestManager.getTest().log(Status.INFO, "Step 06: Click to header upper 'Wishlish' link");
         wishlishPage = productDetailPage.clickToWishlistLink();
+        wishlishPage.sleepInSecond(2);
 
         ExtentTestManager.getTest().log(Status.INFO, "Step 07: Get Wishlist page Url");
         wishlistPageUrl = wishlishPage.getCurrentPageUrl(driver);
 
         ExtentTestManager.getTest().log(Status.INFO, "Step 08: Verify product is display at wishlist page");
-        Assert.assertTrue(wishlishPage.isWishlistTableDisplayed("Product(s)", productName1));
+        Assert.assertTrue(wishlishPage.isRowValueDisplayedAtCart("Product(s)", productName1));
 
         ExtentTestManager.getTest().log(Status.INFO, "Step 09: Click to 'Your wishlish URL for sharing' link");
         yourWishlistSharingPage = wishlishPage.clickToYourWishlistUrlSharingLink();
         yourWishlistSharingPage.sleepInSecond(1);
 
         ExtentTestManager.getTest().log(Status.INFO, "Step 10: Verify product is display at wishlist page");
-        Assert.assertTrue(yourWishlistSharingPage.isYourWishlistSharingTableDisplayed("Product(s)", productName1));
+        Assert.assertTrue(yourWishlistSharingPage.isRowValueDisplayedAtCart("Product(s)", productName1));
     }
-
 
     @Test
     public void Nopcommerce_006_TC_02_Add_Product_To_Cart(Method method) {
@@ -100,7 +104,7 @@ public class Nopcommerce_006_Wishlist_Compare_Recent_View extends BaseTest {
         shoppingCartPage = yourWishlistSharingPage.clickToAddToCartButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Step 03: Verify product display at Shopping cart page");
-        Assert.assertTrue(shoppingCartPage.isShoppingCartTableDisplayed("Product(s)", productName1));
+        Assert.assertTrue(shoppingCartPage.isRowValueDisplayedAtCart("Product(s)", productName1));
 
     }
 
@@ -120,7 +124,7 @@ public class Nopcommerce_006_Wishlist_Compare_Recent_View extends BaseTest {
         Assert.assertEquals(wishlishPage.getEmptyDataMessageDisplay(), "The wishlist is empty!");
 
         ExtentTestManager.getTest().log(Status.INFO, "Step 04: Vefiry product name undisplay at Wishlist page");
-        Assert.assertTrue(wishlishPage.isProductNameUndisplay("Product(s)"));
+        Assert.assertTrue(wishlishPage.isRowValueUndisplayAtCart("Product(s)", productName1));
     }
 
     @Test

@@ -244,6 +244,12 @@ public class BasePage {
         }
     }
 
+    public void uncheckToElement(WebDriver driver, String locator, String... dynamicValue) {
+        if (getWebElement(driver, getDynamicXpath(locator, dynamicValue)).isSelected()) {
+            getWebElement(driver, getDynamicXpath(locator, dynamicValue)).click();
+        }
+    }
+
     public boolean isElementSelected(WebDriver driver, String locator, String... dynamicValue) {
         return getWebElement(driver, getDynamicXpath(locator, dynamicValue)).isSelected();
     }
