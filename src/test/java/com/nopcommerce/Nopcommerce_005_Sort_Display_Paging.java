@@ -9,9 +9,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObject.ComputersPageObject;
-import pageObject.HomePageObject;
-import pageObject.NotebooksPageObject;
+import pageObject.user.ComputersPageObject;
+import pageObject.user.HomePageObject;
+import pageObject.user.NotebooksPageObject;
 import reportConfig.ExtentTestManager;
 
 import java.lang.reflect.Method;
@@ -19,10 +19,10 @@ import java.lang.reflect.Method;
 public class Nopcommerce_005_Sort_Display_Paging extends BaseTest {
     private WebDriver driver;
 
-    @Parameters({"browser", "url"})
+    @Parameters({"browser", "userUrl"})
     @BeforeClass
-    public void beforeClass(String browserName, String urlName) {
-        driver = getBrowserDriver(browserName, urlName);
+    public void beforeClass(String browserName, String userUrl) {
+        driver = getBrowserDriver(browserName, userUrl);
         homePage = PageGeneratorManager.getHomePage(driver);
         computersPage = homePage.clickToComputerHeaderMenu();
         notebooksPage = computersPage.clickToNotebooksNavigationSubmenu();

@@ -10,8 +10,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObject.HomePageObject;
-import pageObject.RegisterPageObject;
+import pageObject.user.HomePageObject;
+import pageObject.user.RegisterPageObject;
 import reportConfig.ExtentTestManager;
 
 import java.lang.reflect.Method;
@@ -21,10 +21,10 @@ public class Nopcommerce_001_Register extends BaseTest {
     private String emailAddress;
     String registerPageUrl;
 
-    @Parameters({"browser", "url"})
+    @Parameters({"browser", "userUrl"})
     @BeforeClass
-    public void beforeClass(String browserName, String appUrl) {
-        driver = getBrowserDriver(browserName, appUrl);
+    public void beforeClass(String browserName, String userUrl) {
+        driver = getBrowserDriver(browserName, userUrl);
         homePage = PageGeneratorManager.getHomePage(driver);
         registerPage = homePage.openRegisterPage();
         registerPageUrl = registerPage.getCurrentPageUrl(driver);

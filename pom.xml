@@ -18,7 +18,7 @@
         <!-- Global variable for dependencies -->
         <webdriver.version>4.16.1</webdriver.version>
         <testng.version>7.8.0</testng.version>
-        <aspectj.version>1.9.8</aspectj.version> <!-- //allure/aspectjweaver-1.9.8-->
+        <aspectj.version>1.9.8</aspectj.version> <!-- //allure/aspectjweaver-1.9.8 tuong thich jdk11-->
         <extent.version>5.1.0</extent.version> <!-- //extentreports-5.1.0-->
         <log4j.version>2.19.0</log4j.version> <!-- //log4j-1.2.16-->
 

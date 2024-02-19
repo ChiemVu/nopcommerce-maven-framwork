@@ -10,10 +10,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObject.HomePageObject;
-import pageObject.LoginPageObject;
-import pageObject.RegisterPageObject;
-import pageObject.SearchPageObject;
+import pageObject.user.HomePageObject;
+import pageObject.user.LoginPageObject;
+import pageObject.user.RegisterPageObject;
+import pageObject.user.SearchPageObject;
 import reportConfig.ExtentTestManager;
 
 import java.lang.reflect.Method;
@@ -23,10 +23,10 @@ public class Nopcommerce_04_Search_AdvanceSearch extends BaseTest {
     private String emailAddress, searchKeyword, category;
 
 
-    @Parameters({"browser", "url"})
+    @Parameters({"browser", "userUrl"})
     @BeforeClass
-    public void beforeClass(String browserName, String appUrl) {
-        driver = getBrowserDriver(browserName, appUrl);
+    public void beforeClass(String browserName, String userUrl) {
+        driver = getBrowserDriver(browserName, userUrl);
         homePage = PageGeneratorManager.getHomePage(driver);
         registerPage = homePage.openRegisterPage();
 

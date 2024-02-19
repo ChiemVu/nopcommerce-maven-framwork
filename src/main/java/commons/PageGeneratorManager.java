@@ -1,7 +1,7 @@
 package commons;
 
 import org.openqa.selenium.WebDriver;
-import pageObject.*;
+import pageObject.user.*;
 
 public class PageGeneratorManager {
     public static HomePageObject getHomePage(WebDriver driver) {

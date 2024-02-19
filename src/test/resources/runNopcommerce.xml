@@ -6,13 +6,20 @@
         <listener class-name="reportConfig.ExtentTestListener"/>
     </listeners>
 
-    <parameter name="url" value="https://demo.nopcommerce.com/"/>
+    <parameter name="userUrl" value="https://demo.nopcommerce.com/"/>
+    <parameter name="adminUrl" value="https://admin-demo.nopcommerce.com/login?returnUrl=/admin/"/>
+
     <test name="Run on Chrome UI" preserve-order="true">
         <parameter name="browser" value="firefox"/>
 
+       <!--  <packages> -->
+        <!--  <package name="com.nopcommerce"/> -->
+        <!--  </packages> -->
+
         <classes>
-            <class name="com.nopcommerce.Nopcommerce_006_Wishlist_Compare_Recent_View"/>
+            <class name="com.nopcommerce.Nopcommerce_007_Order"/>
         </classes>
+
     </test>
 
 

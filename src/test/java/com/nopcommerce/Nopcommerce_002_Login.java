@@ -10,9 +10,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObject.HomePageObject;
-import pageObject.LoginPageObject;
-import pageObject.RegisterPageObject;
+import pageObject.user.HomePageObject;
+import pageObject.user.LoginPageObject;
+import pageObject.user.RegisterPageObject;
 import reportConfig.ExtentTestManager;
 
 import java.lang.reflect.Method;
@@ -22,10 +22,10 @@ public class Nopcommerce_002_Login extends BaseTest {
     private String password, emailAddress;
     String loginPageUrl;
 
-    @Parameters({"browser", "url"})
+    @Parameters({"browser", "userUrl"})
     @BeforeClass
-    public void beforeClass(String browserName, String appUrl) {
-        driver = getBrowserDriver(browserName, appUrl);
+    public void beforeClass(String browserName, String userUrl) {
+        driver = getBrowserDriver(browserName, userUrl);
         homePage = PageGeneratorManager.getHomePage(driver);
         registerPage = homePage.openRegisterPage();
 

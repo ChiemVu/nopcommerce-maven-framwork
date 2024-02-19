@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObject.*;
+import pageObject.user.*;
 import reportConfig.ExtentTestManager;
 
 import java.lang.reflect.Method;
@@ -20,10 +20,10 @@ public class Nopcommerce_006_Wishlist_Compare_Recent_View extends BaseTest {
     private String emailAddress, wishlistPageUrl, productName1, priceProductName1, productName2, priceProductName2, notebooksPageUrl;
 
 
-    @Parameters({"browser", "url"})
+    @Parameters({"browser", "userUrl"})
     @BeforeClass
-    public void beforeClass(String browserName, String appUrl) {
-        driver = getBrowserDriver(browserName, appUrl);
+    public void beforeClass(String browserName, String userUrl) {
+        driver = getBrowserDriver(browserName, userUrl);
         homePage = PageGeneratorManager.getHomePage(driver);
         registerPage = homePage.openRegisterPage();
 
